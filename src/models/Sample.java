@@ -28,8 +28,8 @@ public class Sample {
 		return kinds[kind];
 	}
 	
-	public int getKind(){
-		return kind;
+	public boolean getKind(){
+		return kind == 1;
 	}
 	public void setKind(int kind) {
 		this.kind = kind;
