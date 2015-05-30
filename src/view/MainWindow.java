@@ -35,6 +35,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.JRadioButton;
+import javax.swing.JRadioButtonMenuItem;
 
 public class MainWindow {
 
@@ -48,6 +50,7 @@ public class MainWindow {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -249,6 +252,23 @@ public class MainWindow {
 		// Disable buttons
 		addSamples.setEnabled(false);
 		addGroups.setEnabled(false);
+		
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("Variance");
+		rdbtnNewRadioButton.setSelected(true);
+		rdbtnNewRadioButton.setBounds(256, 16, 141, 23);
+		panel.add(rdbtnNewRadioButton);
+		
+		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Student's ");
+		rdbtnNewRadioButton_1.setBounds(266, 51, 141, 23);
+		panel.add(rdbtnNewRadioButton_1);
+		
+		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("New radio button");
+		rdbtnNewRadioButton_2.setBounds(266, 86, 141, 23);
+		panel.add(rdbtnNewRadioButton_2);
+		
+		JRadioButton rdbtnNewRadioButton_3 = new JRadioButton("New radio button");
+		rdbtnNewRadioButton_3.setBounds(266, 121, 141, 23);
+		panel.add(rdbtnNewRadioButton_3);
 
 		
 

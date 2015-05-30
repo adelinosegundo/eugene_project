@@ -1,5 +1,7 @@
 package controller;
+import models.Collection;
 import models.Gene;
+import models.Kind;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -12,84 +14,67 @@ import java.util.Scanner;
 
 
 public class GeneController {
-	List<Gene> genes;
-	public GeneController(){
-		genes = new ArrayList<Gene>();
-	} 
-	public void processSamples(String controlFileName, String samplesFileName){
-        // Read control file
+	
+	public void processSamples(Collection collection, String samplesFileName, String controlsFileName){ // NEEDS REFACTORING
         String line = null;
-        ArrayList<String> names = new ArrayList<String>();
-        ArrayList<String> kinds = new ArrayList<String>();
-        try {
-            // FileReader reads text files in the default encoding.
-            FileReader fileReader = 
-                new FileReader(controlFileName);
-            // Always wrap FileReader in BufferedReader.
-            BufferedReader bufferedReader = 
-                new BufferedReader(fileReader);
+
+		try {
+            FileReader fileReader = new FileReader(controlsFileName);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            System.out.println("Reading file " + controlsFileName + " ...\n");
+            
             while((line = bufferedReader.readLine()) != null) {
-                String[] nameAndKind = line.split(" ");
-            	names.add(nameAndKind[0]);
-                kinds.add(nameAndKind[1]);
+                String[] sampleMarkerAndKind = line.split(" ");
+                
+                
+                System.out.println("'" + sampleMarkerAndKind[0] + "'");
+                System.out.println("'" + sampleMarkerAndKind[1] + "'");
+                
+                String sampleName = sampleMarkerAndKind[0];
+                String kindName = sampleMarkerAndKind[1];
+                
+                Kind kind = collection.addAndReturnKind(kindName);
+                
+                collection.addSample(sampleName, kind);   
             }
-            // Always close files.
-            bufferedReader.close();            
-        }
-        catch(FileNotFoundException ex) {
-            System.out.println(
-                "Unable to open file '" + 
-                	controlFileName + "'");                
-        }
-        catch(IOException ex) {
-            System.out.println(
-                "Error reading file '" 
-                + controlFileName + "'");
-        }
-        
-        //Read samples file
-        Scanner scanner;
-        try {
-            // FileReader reads text files in the default encoding.
-            FileReader fileReader = 
-                new FileReader(samplesFileName);
-            // Always wrap FileReader in BufferedReader.
-            BufferedReader bufferedReader = 
-                new BufferedReader(fileReader);
+            bufferedReader.close();   
+        } catch(FileNotFoundException ex) {
+            System.out.println("Unable to open file '" + controlsFileName + "'");                
+        } catch(IOException ex) {
+            System.out.println("Error reading file '" + controlsFileName + "'");
+        }  
+		
+		try {
+            FileReader fileReader = new FileReader(samplesFileName);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            System.out.println("Reading file " + samplesFileName + " ...\n");
+            
             while((line = bufferedReader.readLine()) != null) {
-                Gene gene = new Gene(line.split(" ")[0]);
-                scanner = new Scanner(line);
+            	String geneMarker = line.split(" ")[0].contains("	") ? line.split("	")[0] : line.split(" ")[0]; // Avoiding tabs as separator
+            	
+                Scanner scanner = new Scanner(line);
                 Double expression;
-                int index = 0;
-                while(scanner.hasNextDouble()){
-                	expression = scanner.nextDouble();
-                	String kind = kinds.get(index);
-            		if (kind.equals("controle")){
-            			gene.addSample(expression, true);
-            		} else {
-            			gene.addSample(expression, false);
-            		}
-                	index++;
+                int counter = 0;
+                
+                while (scanner.hasNext()) {
+	                if (scanner.hasNextDouble()){
+	                	expression = scanner.nextDouble();
+	                	
+	                	Gene gene = new Gene(geneMarker, expression);
+	                	collection.getSamples().get(counter).addGene(gene);
+	                	
+	                	counter++;
+	                } else {
+	                	scanner.next();
+	                }
                 }
-                genes.add(gene);
             }
-            // Always close files.
-            bufferedReader.close();            
-        }
-        catch(FileNotFoundException ex) {
-            System.out.println(
-                "Unable to open file '" + 
-                	controlFileName + "'");                
-        }
-        catch(IOException ex) {
-            System.out.println(
-                "Error reading file '" 
-                + controlFileName + "'");
-        }
-        for(Gene gene : genes){
-        	gene.print();
-        }
-		//process genes one by one
-		//generate file from database
+            
+            bufferedReader.close();
+        } catch(FileNotFoundException ex) {
+            System.out.println("Unable to open file '" + samplesFileName + "'");                
+        } catch(IOException ex) {
+            System.out.println("Error reading file '" + samplesFileName + "'");
+        }  
 	}
 }
