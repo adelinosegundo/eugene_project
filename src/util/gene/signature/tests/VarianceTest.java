@@ -1,5 +1,5 @@
 /**
- * 
+ * http://wikiciencias.casadasciencias.org/wiki/index.php/Vari%C3%A2ncia_amostral
  */
 package util.gene.signature.tests;
 
@@ -11,6 +11,6 @@ package util.gene.signature.tests;
  * @date May 30, 2015
  *
  */
-public class GeneSignatureClient {
+public class VarianceTest {
 
 }

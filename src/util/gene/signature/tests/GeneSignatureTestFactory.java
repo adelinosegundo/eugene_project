@@ -5,7 +5,9 @@ package util.gene.signature.tests;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Wendell P. Barreto (wendellp.barreto@gmail.com) 
@@ -17,8 +19,8 @@ import java.util.List;
  */
 public class GeneSignatureTestFactory {
 	private static GeneSignatureTestFactory instance = new GeneSignatureTestFactory();
-	private HashMap<String, IGeneSignatureTest> registeredGeneSignatureTests = new HashMap<String, IGeneSignatureTest>();
-	public static final String[] testTypes = {
+	private HashMap<String, IGeneSignatureTest> registeredGeneSignatureTests;
+	public final String[] testTypes = {
 		"variance", // TestType 1
 		"wilcoxon", // TestType 2
 		"ttest",  // TestType 3
@@ -26,12 +28,17 @@ public class GeneSignatureTestFactory {
 	};
 	
 	private GeneSignatureTestFactory() {
-		GeneSignatureTestFactory.getInstance().register(testTypes[0], new VarianceTestAdapter());
-		GeneSignatureTestFactory.getInstance().register(testTypes[1], new WilcoxonTestAdapter());
-		GeneSignatureTestFactory.getInstance().register(testTypes[2], new TTestAdapter());
-		GeneSignatureTestFactory.getInstance().register(testTypes[3], new ChiSquareTestAdapter());
+		this.registeredGeneSignatureTests = new HashMap<String, IGeneSignatureTest>();
+		this.register(testTypes[0], (IGeneSignatureTest) new VarianceTestAdapter());
+		this.register(testTypes[1], new WilcoxonTestAdapter());
+		this.register(testTypes[2].toString(), (IGeneSignatureTest) new TTestAdapter());
+		this.register(testTypes[3].toString(), (IGeneSignatureTest) new ChiSquareTestAdapter());
 		
 		System.out.println("GeneSignatureTestFactory initialized!");
+		
+		for (Map.Entry<String, IGeneSignatureTest> geneSignatureTest : this.registeredGeneSignatureTests.entrySet()) {
+			System.out.println(" >>> " + geneSignatureTest.getKey());
+		}
 	}
 	
 	public static GeneSignatureTestFactory getInstance() {
@@ -39,7 +46,10 @@ public class GeneSignatureTestFactory {
 	}
 	
 	public void register(String geneSignatureTestName, IGeneSignatureTest geneSignatureTest){
-		this.registeredGeneSignatureTests.put(geneSignatureTestName, geneSignatureTest);
-		
+		this.registeredGeneSignatureTests.put(geneSignatureTestName, geneSignatureTest);	
+	}
+	
+	public static IGeneSignatureTest getRegisteredGeneSignatureTest(String testType) {
+		return GeneSignatureTestFactory.getInstance().registeredGeneSignatureTests.get(testType);
 	}
 }

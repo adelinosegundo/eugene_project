@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -35,32 +36,59 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 import javax.swing.JRadioButton;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
+import controller.GeneController;
+import util.gene.signature.tests.GeneSignatureTestFacade;
+
 public class MainWindow {
 
 	private JFrame frame;
+	
 	private JLabel statusLabel = null;
-
-	private JButton addSamples = null;
-	private JButton addGroups = null;
-	private JButton start = null;
-	private JButton JButton executeTestButton = null;
 
 	private JTextArea console = null;
 	
+	private JButton addSamples = null;
+	private JButton addGroups = null;
+	private JButton start = null;
+	private JButton executeTestButton = null;
+
+	private ButtonGroup testButtonGroup = null;
+
+	private JRadioButton varianceTestRadioButton = null;
+	private JRadioButton tTestStudentRadioButton = null;
+	private JRadioButton wilcoxonTestRadioButton = null;
+	private JRadioButton chiSquareTestRadioButton = null;
+	
+	private JLabel lblSamples = null;
+	private JLabel lblSamplesQuantity = null;
+	private JLabel lblValidGenes = null;
+	private JLabel lblExpressionsQuantity = null;
+	private JLabel lblExpressions = null;
+	private JLabel lvlInvalidGenes = null;
+	private JLabel lblValidGenesQuantity = null;
+	private JLabel lblInvalidGenesQuantity = null;
+	private JLabel lblGroups = null;
+	private JLabel lblGroupsNames = null;
+	private JLabel lblStatus = null;
+
 	private BufferedImage offImage = null, onImage = null;
-	final JFileChooser fc;
+	
+	private final JFileChooser fc;
 
 	private Collection collection;
+	private static GeneController geneController;
 	
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		geneController = new GeneController();
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -82,7 +110,7 @@ public class MainWindow {
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("Arquivos de texto .txt", "txt");
 		fc.setFileFilter(filter);
 
-		initializeFrameAndPanels();
+		initializeComponents();
 		initialize();
 	}
 
@@ -135,67 +163,74 @@ public class MainWindow {
 		statusLabel.setIcon(new ImageIcon(offImage));
 		frame.getContentPane().add(statusLabel);
 
-		JLabel lblSamples = new JLabel("Samples:");
-		lblSamples.setBounds(513, 43, 61, 16);
+		lblSamples = new JLabel("Samples:");
+		lblSamples.setBounds(512, 33, 61, 16);
 		panel.add(lblSamples);
 		
-		JLabel lblSamplesValue = new JLabel("0");
-		lblSamplesValue.setBounds(609, 43, 61, 16);
-		panel.add(lblSamplesValue);
+		lblSamplesQuantity = new JLabel("0");
+		lblSamplesQuantity.setBounds(608, 33, 61, 16);
+		panel.add(lblSamplesQuantity);
 		
-		JLabel lblValidGenes = new JLabel("Valid Genes:");
-		lblValidGenes.setBounds(513, 93, 84, 16);
+		lblValidGenes = new JLabel("Valid Genes:");
+		lblValidGenes.setBounds(512, 83, 84, 16);
 		panel.add(lblValidGenes);
 		
-		JLabel lblExpressionsValue = new JLabel("0");
-		lblExpressionsValue.setBounds(609, 68, 61, 16);
-		panel.add(lblExpressionsValue);
+		lblExpressionsQuantity = new JLabel("0");
+		lblExpressionsQuantity.setBounds(608, 58, 61, 16);
+		panel.add(lblExpressionsQuantity);
 		
-		JLabel lblExpressions = new JLabel("Expressions:");
-		lblExpressions.setBounds(513, 68, 80, 16);
+		lblExpressions = new JLabel("Expressions:");
+		lblExpressions.setBounds(512, 58, 80, 16);
 		panel.add(lblExpressions);
 		
-		JLabel lvlInvalidGenes = new JLabel("Invalid Genes:");
-		lvlInvalidGenes.setBounds(513, 118, 97, 16);
+		lvlInvalidGenes = new JLabel("Invalid Genes:");
+		lvlInvalidGenes.setBounds(512, 108, 97, 16);
 		panel.add(lvlInvalidGenes);
 		
-		JLabel lblValidGenesValue = new JLabel("0");
-		lblValidGenesValue.setBounds(609, 93, 61, 16);
-		panel.add(lblValidGenesValue);
+		lblValidGenesQuantity = new JLabel("0");
+		lblValidGenesQuantity.setBounds(608, 83, 61, 16);
+		panel.add(lblValidGenesQuantity);
 		
-		JLabel lblInvalidGenesValue = new JLabel("0");
-		lblInvalidGenesValue.setBounds(609, 118, 61, 16);
-		panel.add(lblInvalidGenesValue);
+		lblInvalidGenesQuantity = new JLabel("0");
+		lblInvalidGenesQuantity.setBounds(608, 108, 61, 16);
+		panel.add(lblInvalidGenesQuantity);
 		
-		JLabel lblGroups = new JLabel("Groups:");
-		lblGroups.setBounds(513, 143, 61, 16);
+		lblGroups = new JLabel("Groups:");
+		lblGroups.setBounds(512, 133, 61, 16);
 		panel.add(lblGroups);
 		
-		JLabel lblGroupsNames = new JLabel("none");
-		lblGroupsNames.setBounds(609, 143, 112, 16);
+		lblGroupsNames = new JLabel("none");
+		lblGroupsNames.setBounds(608, 133, 112, 16);
 		panel.add(lblGroupsNames);
 		
-		JLabel lblStatus = new JLabel("Status");
-		lblStatus.setBounds(563, 16, 61, 16);
+		lblStatus = new JLabel("Status");
+		lblStatus.setBounds(560, 10, 61, 16);
 		panel.add(lblStatus);
 
 		// Radio Buttons
-		JRadioButton varianceTestButton = new JRadioButton("Variance Test");
-		varianceTestButton.setSelected(true);
-		varianceTestButton.setBounds(256, 20, 141, 23);
-		panel.add(varianceTestButton);
+		varianceTestRadioButton = new JRadioButton("Variance Test");
+		varianceTestRadioButton.setSelected(true);
+		varianceTestRadioButton.setBounds(256, 20, 141, 23);
+		panel.add(varianceTestRadioButton);
 		
-		JRadioButton tTestStudentButton = new JRadioButton("Student's paired t-test");
-		tTestStudentButton.setBounds(256, 45, 178, 23);
-		panel.add(tTestStudentButton);
+		tTestStudentRadioButton = new JRadioButton("Student's paired t-test");
+		tTestStudentRadioButton.setBounds(256, 45, 178, 23);
+		panel.add(tTestStudentRadioButton);
 		
-		JRadioButton wilcoxonTestButton = new JRadioButton("Wilcoxon signed rank test");
-		wilcoxonTestButton.setBounds(256, 70, 205, 23);
-		panel.add(wilcoxonTestButton);
+		wilcoxonTestRadioButton = new JRadioButton("Wilcoxon signed rank test");
+		wilcoxonTestRadioButton.setBounds(256, 70, 205, 23);
+		panel.add(wilcoxonTestRadioButton);
 		
-		JRadioButton chiSquareTestButton = new JRadioButton("Chi Square Test");
-		chiSquareTestButton.setBounds(256, 95, 141, 23);
-		panel.add(chiSquareTestButton);
+		chiSquareTestRadioButton = new JRadioButton("Chi Square Test");
+		chiSquareTestRadioButton.setBounds(256, 95, 141, 23);
+		panel.add(chiSquareTestRadioButton);
+		
+		// Radio Buttons Group
+		testButtonGroup = new ButtonGroup();
+		testButtonGroup.add(varianceTestRadioButton);
+		testButtonGroup.add(tTestStudentRadioButton);
+		testButtonGroup.add(wilcoxonTestRadioButton);
+		testButtonGroup.add(chiSquareTestRadioButton);
 		
 		// Buttons
 		executeTestButton = new JButton("Execute Test");
@@ -213,66 +248,43 @@ public class MainWindow {
 		start = new JButton("Start");
 		start.setBounds(652, 98, 93, 35);
 		frame.getContentPane().add(start);
-		
-		
-
 	}
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
 		addSamples.setEnabled(false);
 		addGroups.setEnabled(false);
+		executeTestButton.setEnabled(false);
 
 		console.append("Eugene says welcome to you!\n");
 		console.append("Click 'Start' button to start.\n");
 		
-		addSamples.addActionListener(new ActionListener() {
+		start.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int returnVal = fc.showOpenDialog(frame);
-				if(returnVal == JFileChooser.APPROVE_OPTION) {
-					File file = fc.getSelectedFile();
-					System.out.println("You chose to open this file: " + file.getName());
-					
-			        String line = null;
-
-					try {
-			            FileReader fileReader = new FileReader(file);
-			            BufferedReader bufferedReader = new BufferedReader(fileReader);
-			            console.append("Reading file " + file.getName() + " ...\n");
-			            
-			            while((line = bufferedReader.readLine()) != null) {
-			            	String geneMarker = line.split(" ")[0].contains("	") ? line.split("	")[0] : line.split(" ")[0]; // Avoiding tabs as separator
-			            	
-			                Scanner scanner = new Scanner(line);
-			                Double expression;
-			                int counter = 0;
-			                
-			                while (scanner.hasNext()) {
-				                if (scanner.hasNextDouble()){
-				                	expression = scanner.nextDouble();
-				                	
-				                	Gene gene = new Gene(geneMarker, expression);
-				                	collection.getSamples().get(counter).addGene(gene);
-				                	
-				                	counter++;
-				                } else {
-				                	scanner.next();
-				                }
-			                }
-			            }
-			            
-			            bufferedReader.close();
-			            
-			            addSamples.setEnabled(false);
-			        } catch(FileNotFoundException ex) {
-			            console.append("Unable to open file '" + file.getName() + "'");                
-			        } catch(IOException ex) {
-			            console.append("Error reading file '" + file.getName() + "'");
-			        }  
-
-					collection.print();				       
-				}
+				collection = new Collection();
+				updateStatus();
+				
+//				try {
+//				    Thread.sleep(1000);                 
+//				    console.append(".\n");
+//				    Thread.sleep(1000);
+//				    console.append("..\n");
+//				} catch(InterruptedException ex) {
+//				    Thread.currentThread().interrupt();
+//				}
+				
+				addSamples.setEnabled(false);
+				addGroups.setEnabled(true);
+				executeTestButton.setEnabled(false);
+				
+				statusLabel.setIcon(new ImageIcon(onImage));
+				
+				start.setText("Restart");
+				
+				console.append("Aplication started/restarted and database cleaned.\n");
+				console.append("Step 1 | Click 'Import Groups' button and upload the file with samples markers and groups names information.\n");
 			}
 		});
 		
@@ -318,25 +330,88 @@ public class MainWindow {
 			        }  
 					
 					collection.print();
+					updateStatus();
 				}
 			}
 		});
 		
-		start.addActionListener(new ActionListener() {
+		addSamples.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				collection = new Collection();
-				
-				addSamples.setEnabled(false);
-				addGroups.setEnabled(true);
-				
-				statusLabel.setIcon(new ImageIcon(onImage));
-				
-				start.setText("Restart");
-				
-				console.append("Aplication started/restarted and database cleaned.\n");
-				console.append("Step 1 | Click 'Import Groups' button and upload the file with samples markers and groups names information.\n");
+				int returnVal = fc.showOpenDialog(frame);
+				if(returnVal == JFileChooser.APPROVE_OPTION) {
+					File file = fc.getSelectedFile();
+					System.out.println("You chose to open this file: " + file.getName());
+					
+			        String line = null;
+
+					try {
+			            FileReader fileReader = new FileReader(file);
+			            BufferedReader bufferedReader = new BufferedReader(fileReader);
+			            console.append("Reading file " + file.getName() + " ...\n");
+			            
+			            while((line = bufferedReader.readLine()) != null) {
+			            	String geneMarker = line.split(" ")[0].contains("	") ? line.split("	")[0] : line.split(" ")[0]; // Avoiding tabs as separator
+			            	
+			                Scanner scanner = new Scanner(line);
+			                Double expression;
+			                int counter = 0;
+			                
+			                while (scanner.hasNext()) {
+				                if (scanner.hasNextDouble()){
+				                	expression = scanner.nextDouble();
+				                	
+				                	Gene gene = new Gene(geneMarker, expression);
+				                	collection.getSamples().get(counter).addGene(gene);
+				                	
+				                	counter++;
+				                } else {
+				                	scanner.next();
+				                }
+			                }
+			            }
+			            
+			            bufferedReader.close();
+			            
+			            addSamples.setEnabled(false);
+			            executeTestButton.setEnabled(true);
+			        } catch(FileNotFoundException ex) {
+			            console.append("Unable to open file '" + file.getName() + "'");                
+			        } catch(IOException ex) {
+			            console.append("Error reading file '" + file.getName() + "'");
+			        }  
+
+					collection.print();	
+					updateStatus();
+				}
 			}
 		});
 		
+		executeTestButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (varianceTestRadioButton.isSelected()){
+					geneController.validateGenesByPvalue(collection, "variance");
+				} else if (tTestStudentRadioButton.isSelected()) {
+					geneController.validateGenesByPvalue(collection, "ttest");
+
+				} else if (wilcoxonTestRadioButton.isSelected()) {
+					geneController.validateGenesByPvalue(collection, "wilcoxon");
+
+				} else if (chiSquareTestRadioButton.isSelected()) {
+					geneController.validateGenesByPvalue(collection, "chisquare");
+
+				}
+			}
+		});
+	}
+	
+	/**
+	 * Update status values to number of genes, samples and groups
+	 */
+	private void updateStatus() {
+		lblSamplesQuantity.setText(Integer.toString(collection.getSamplesQuantity()));
+		lblExpressionsQuantity.setText(Integer.toString(collection.getExpressionsQuantity()));
+		lblValidGenesQuantity.setText(Integer.toString(collection.getValidGenesQuantity()));
+		lblInvalidGenesQuantity.setText(Integer.toString(collection.getInvaliGenesQuantity()));
+		lblGroupsNames.setText(collection.getGroupsNames());
 	}
 }
