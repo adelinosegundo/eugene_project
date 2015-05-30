@@ -37,12 +37,23 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JRadioButton;
 import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
 
 public class MainWindow {
 
 	private JFrame frame;
 	private JLabel statusLabel = null;
+
+	private JButton addSamples = null;
+	private JButton addGroups = null;
+	private JButton start = null;
+	private JButton JButton executeTestButton = null;
+
+	private JTextArea console = null;
+	
 	private BufferedImage offImage = null, onImage = null;
+	final JFileChooser fc;
 
 	private Collection collection;
 	
@@ -67,64 +78,155 @@ public class MainWindow {
 	 * Create the application.
 	 */
 	public MainWindow() {
+		fc = new JFileChooser();
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("Arquivos de texto .txt", "txt");
+		fc.setFileFilter(filter);
+
+		initializeFrameAndPanels();
 		initialize();
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialize IFrame
 	 */
-	private void initialize() {
-		final JFileChooser fc = new JFileChooser();
-		FileNameExtensionFilter filter = new FileNameExtensionFilter("Arquivos de texto .txt", "txt");
-		fc.setFileFilter(filter);
-
-		// Frame
+	public void initializeComponents() {
+		// Frames
 		frame = new JFrame();
 		frame.setBounds(100, 100, 753, 736);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
-		
-		JLabel project = new JLabel("<html><span style='width:300px;font-size:20px;text-transform:uppercase;text-align:center'>EU<span style='font-weight:bold;'>GENE</span> PROJECT</span></html>", JLabel.CENTER);
-		project.setBounds(267, 24, 237, 50);
-		frame.getContentPane().add(project);
-		
+
+		// Panels
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		panel.setBounds(6, 136, 739, 176);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
-		
-		/*
-		 * Status icon
-		 */
+
+		// Images
 		try {
 			onImage = ImageIO.read(new File("resources/on.png"));
 			offImage = ImageIO.read(new File("resources/off.png"));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		
+
+		// Separators
+		JSeparator separator = new JSeparator();
+		separator.setOrientation(SwingConstants.VERTICAL);
+		separator.setBackground(Color.GRAY);
+		separator.setForeground(Color.GRAY);
+		separator.setBounds(224, 16, 5, 145);
+		panel.add(separator);
+
+		// TextAreas
+		console = new JTextArea();
+		console.setBounds(6, 549, 741, 159);
+		frame.getContentPane().add(console);
+
+		// Labels
+		JLabel project = new JLabel(
+			"<html><span style='width:300px;font-size:20px;text-transform:uppercase;text-align:center'>EU<span style='font-weight:bold;'>GENE</span> PROJECT</span></html>", JLabel.CENTER);
+		project.setBounds(267, 24, 237, 50);
+		frame.getContentPane().add(project);
+
 		statusLabel = new JLabel();
 		statusLabel.setBounds(615, 100, 30, 30);
 		statusLabel.setIcon(new ImageIcon(offImage));
 		frame.getContentPane().add(statusLabel);
+
+		JLabel lblSamples = new JLabel("Samples:");
+		lblSamples.setBounds(513, 43, 61, 16);
+		panel.add(lblSamples);
 		
-		/*
-		 * TextAreas
-		 */
-		JTextArea console = new JTextArea();
-		console.setBounds(6, 549, 741, 159);
-		frame.getContentPane().add(console);
+		JLabel lblSamplesValue = new JLabel("0");
+		lblSamplesValue.setBounds(609, 43, 61, 16);
+		panel.add(lblSamplesValue);
 		
-		// Welcome 
+		JLabel lblValidGenes = new JLabel("Valid Genes:");
+		lblValidGenes.setBounds(513, 93, 84, 16);
+		panel.add(lblValidGenes);
+		
+		JLabel lblExpressionsValue = new JLabel("0");
+		lblExpressionsValue.setBounds(609, 68, 61, 16);
+		panel.add(lblExpressionsValue);
+		
+		JLabel lblExpressions = new JLabel("Expressions:");
+		lblExpressions.setBounds(513, 68, 80, 16);
+		panel.add(lblExpressions);
+		
+		JLabel lvlInvalidGenes = new JLabel("Invalid Genes:");
+		lvlInvalidGenes.setBounds(513, 118, 97, 16);
+		panel.add(lvlInvalidGenes);
+		
+		JLabel lblValidGenesValue = new JLabel("0");
+		lblValidGenesValue.setBounds(609, 93, 61, 16);
+		panel.add(lblValidGenesValue);
+		
+		JLabel lblInvalidGenesValue = new JLabel("0");
+		lblInvalidGenesValue.setBounds(609, 118, 61, 16);
+		panel.add(lblInvalidGenesValue);
+		
+		JLabel lblGroups = new JLabel("Groups:");
+		lblGroups.setBounds(513, 143, 61, 16);
+		panel.add(lblGroups);
+		
+		JLabel lblGroupsNames = new JLabel("none");
+		lblGroupsNames.setBounds(609, 143, 112, 16);
+		panel.add(lblGroupsNames);
+		
+		JLabel lblStatus = new JLabel("Status");
+		lblStatus.setBounds(563, 16, 61, 16);
+		panel.add(lblStatus);
+
+		// Radio Buttons
+		JRadioButton varianceTestButton = new JRadioButton("Variance Test");
+		varianceTestButton.setSelected(true);
+		varianceTestButton.setBounds(256, 20, 141, 23);
+		panel.add(varianceTestButton);
+		
+		JRadioButton tTestStudentButton = new JRadioButton("Student's paired t-test");
+		tTestStudentButton.setBounds(256, 45, 178, 23);
+		panel.add(tTestStudentButton);
+		
+		JRadioButton wilcoxonTestButton = new JRadioButton("Wilcoxon signed rank test");
+		wilcoxonTestButton.setBounds(256, 70, 205, 23);
+		panel.add(wilcoxonTestButton);
+		
+		JRadioButton chiSquareTestButton = new JRadioButton("Chi Square Test");
+		chiSquareTestButton.setBounds(256, 95, 141, 23);
+		panel.add(chiSquareTestButton);
+		
+		// Buttons
+		executeTestButton = new JButton("Execute Test");
+		executeTestButton.setBounds(260, 125, 150, 35);
+		panel.add(executeTestButton);
+
+		addSamples = new JButton("Import Samples");
+		addSamples.setBounds(18, 95, 178, 64);
+		panel.add(addSamples);
+
+		addGroups = new JButton("Import Groups");
+		addGroups.setBounds(18, 16, 178, 64);
+		panel.add(addGroups);
+
+		start = new JButton("Start");
+		start.setBounds(652, 98, 93, 35);
+		frame.getContentPane().add(start);
+		
+		
+
+	}
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		addSamples.setEnabled(false);
+		addGroups.setEnabled(false);
+
 		console.append("Eugene says welcome to you!\n");
 		console.append("Click 'Start' button to start.\n");
-				
-		/*
-		 * Buttons
-		 */
-		JButton addSamples = new JButton("Import Samples");
+		
 		addSamples.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int returnVal = fc.showOpenDialog(frame);
@@ -173,10 +275,7 @@ public class MainWindow {
 				}
 			}
 		});
-		addSamples.setBounds(18, 92, 178, 64);
-		panel.add(addSamples);
 		
-		JButton addGroups = new JButton("Import Groups");
 		addGroups.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int returnVal = fc.showOpenDialog(frame);
@@ -222,10 +321,7 @@ public class MainWindow {
 				}
 			}
 		});
-		addGroups.setBounds(18, 16, 178, 64);
-		panel.add(addGroups);
 		
-		JButton start = new JButton("Start"); // start
 		start.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				collection = new Collection();
@@ -241,37 +337,6 @@ public class MainWindow {
 				console.append("Step 1 | Click 'Import Groups' button and upload the file with samples markers and groups names information.\n");
 			}
 		});
-		start.setBounds(652, 98, 93, 35);
-		frame.getContentPane().add(start);
-		
-		
-		
-		// Start action
-		
-
-		// Disable buttons
-		addSamples.setEnabled(false);
-		addGroups.setEnabled(false);
-		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Variance Test");
-		rdbtnNewRadioButton.setSelected(true);
-		rdbtnNewRadioButton.setBounds(256, 16, 141, 23);
-		panel.add(rdbtnNewRadioButton);
-		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Student's paired t-test");
-		rdbtnNewRadioButton_1.setBounds(266, 51, 178, 23);
-		panel.add(rdbtnNewRadioButton_1);
-		
-		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("Wilcoxon signed rank test");
-		rdbtnNewRadioButton_2.setBounds(266, 86, 205, 23);
-		panel.add(rdbtnNewRadioButton_2);
-		
-		JRadioButton rdbtnNewRadioButton_3 = new JRadioButton("New radio button");
-		rdbtnNewRadioButton_3.setBounds(266, 121, 141, 23);
-		panel.add(rdbtnNewRadioButton_3);
-
-		
-
 		
 	}
 }

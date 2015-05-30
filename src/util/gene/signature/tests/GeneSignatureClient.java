@@ -1,7 +1,7 @@
 /**
  * 
  */
-package util.geneSignatureTests;
+package util.gene.signature.tests;
 
 /**
  * @author Wendell P. Barreto (wendellp.barreto@gmail.com) 

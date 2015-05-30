@@ -1,7 +1,7 @@
 /**
  * 
  */
-package util.geneSignatureTests;
+package util.gene.signature.tests;
 
 /**
  * @author Wendell P. Barreto (wendellp.barreto@gmail.com) 
@@ -11,10 +11,10 @@ package util.geneSignatureTests;
  * @date May 30, 2015
  *
  */
-public class WilcoxonTestAdapter implements IGeneSignatureTest {
+public class ChiSquareTestAdapter implements IGeneSignatureTest {
 
 	/* (non-Javadoc)
-	 * @see util.geneSignatureTests.IGeneSignatureTest#requestValue()
+	 * @see util.geneSignatureTests.IGeneSignatureTest#requestValue(double, double)
 	 */
 	@Override
 	public double requestValue(double sample1, double sample2) {

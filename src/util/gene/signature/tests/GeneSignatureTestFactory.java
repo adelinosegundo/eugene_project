@@ -1,7 +1,7 @@
 /**
  * 
  */
-package util.geneSignatureTests;
+package util.gene.signature.tests;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,12 +22,14 @@ public class GeneSignatureTestFactory {
 		"variance", // TestType 1
 		"wilcoxon", // TestType 2
 		"ttest",  // TestType 3
+		"chisquare",  // TestType 3
 	};
 	
 	private GeneSignatureTestFactory() {
 		GeneSignatureTestFactory.getInstance().register(testTypes[0], new VarianceTestAdapter());
-		GeneSignatureTestFactory.getInstance().register(testTypes[0], new WilcoxonTestAdapter());
-		GeneSignatureTestFactory.getInstance().register(testTypes[0], new TTestAdapter());
+		GeneSignatureTestFactory.getInstance().register(testTypes[1], new WilcoxonTestAdapter());
+		GeneSignatureTestFactory.getInstance().register(testTypes[2], new TTestAdapter());
+		GeneSignatureTestFactory.getInstance().register(testTypes[3], new ChiSquareTestAdapter());
 		
 		System.out.println("GeneSignatureTestFactory initialized!");
 	}
