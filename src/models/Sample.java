@@ -1,55 +1,79 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Sample {
-	private Double expression;
-	private int kind;
+	private String name;
+	private List<Gene> genes;
+	private Kind kind;
 	private boolean valid;
-	
-	private static final String[] kinds = {"Control", "Subject"};
-	
-	
-	
-	public Sample(Double expression){
+
+	public Sample(String name, Kind kind){
+		this.setName(name);
+		this.setKind(kind);
 		this.setValid(true);
-		this.kind = 1;
-		this.expression = expression;
+		this.genes = new ArrayList<Gene>();
 	}
-	
-	
-	//
-	public Sample(Double expression, boolean control){
+
+	public Sample(Kind kind, ArrayList<Gene> genes, String name){
+		this.setKind(kind);
 		this.setValid(true);
-		if (control)
-			this.kind = 0;
-		this.expression = expression;
+		this.setGenes(genes);
+		this.setName(name);
 	}
-	
-	public String getKindName() {
-		return kinds[kind];
+
+	public Sample(Kind kind, ArrayList<Gene> genes, boolean valid, String name){
+		this.setKind(kind);
+		this.setValid(valid);
+		this.setGenes(genes);
+		this.setName(name);
 	}
-	
-	public boolean getKind(){
-		return kind == 1;
+
+	public List<Gene> getGenes() {
+		return genes;
 	}
-	public void setKind(int kind) {
+
+	public void setGenes(List<Gene> genes) {
+		this.genes = genes;
+	}
+
+	public Kind getKind() {
+		return kind;
+	}
+
+	public void setKind(Kind kind) {
 		this.kind = kind;
 	}
-
-	public Double getExpression() {
-		return expression;
-	}
-
-	public void setExpression(Double expression) {
-		this.expression = expression;
-	}
-
 
 	public boolean isValid() {
 		return valid;
 	}
 
-
 	public void setValid(boolean valid) {
 		this.valid = valid;
 	}
+	
+	public void addGene(Gene gene){
+		this.genes.add(gene);
+	}
+	
+	public void addGene(String marker, Double expression){
+		this.genes.add(new Gene(marker, expression));
+	}
+	
+	public void addGenes(ArrayList<Gene> genes){
+		for (Gene gene : genes) {
+			this.genes.add(gene);
+		}
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name.toLowerCase().trim();
+	}
+
 }

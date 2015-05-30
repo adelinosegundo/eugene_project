@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.8" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" language="java" name="ui.MainWindow" project="gene_analytics" 
-    file="/gene_analytics/src/ui/MainWindow.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="1" language="java" name="view.MainWindow" project="gene_analytics" 
+    file="/gene_analytics/src/view/MainWindow.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="80" width="112" x="51" y="152"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
