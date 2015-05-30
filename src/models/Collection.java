@@ -4,7 +4,12 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 import java.util.List;
+
+import util.Fatorial;
+import util.clustering.SamplesDistanceComparator;
 
 /**
  * @author wendellpbarreto
@@ -101,6 +106,5 @@ public class Collection {
 	public void setSamples(List<Sample> samples) {
 		this.samples = samples;
 	}
-	
 	
 }
