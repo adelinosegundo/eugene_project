@@ -253,17 +253,17 @@ public class MainWindow {
 		addSamples.setEnabled(false);
 		addGroups.setEnabled(false);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Variance");
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("Variance Test");
 		rdbtnNewRadioButton.setSelected(true);
 		rdbtnNewRadioButton.setBounds(256, 16, 141, 23);
 		panel.add(rdbtnNewRadioButton);
 		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Student's ");
-		rdbtnNewRadioButton_1.setBounds(266, 51, 141, 23);
+		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Student's paired t-test");
+		rdbtnNewRadioButton_1.setBounds(266, 51, 178, 23);
 		panel.add(rdbtnNewRadioButton_1);
 		
-		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("New radio button");
-		rdbtnNewRadioButton_2.setBounds(266, 86, 141, 23);
+		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("Wilcoxon signed rank test");
+		rdbtnNewRadioButton_2.setBounds(266, 86, 205, 23);
 		panel.add(rdbtnNewRadioButton_2);
 		
 		JRadioButton rdbtnNewRadioButton_3 = new JRadioButton("New radio button");
