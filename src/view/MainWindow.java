@@ -392,10 +392,8 @@ public class MainWindow {
 					geneController.validateGenesByPvalue(collection, "variance");
 				} else if (tTestStudentRadioButton.isSelected()) {
 					geneController.validateGenesByPvalue(collection, "ttest");
-
 				} else if (wilcoxonTestRadioButton.isSelected()) {
 					geneController.validateGenesByPvalue(collection, "wilcoxon");
-
 				} else if (chiSquareTestRadioButton.isSelected()) {
 					geneController.validateGenesByPvalue(collection, "chisquare");
 
