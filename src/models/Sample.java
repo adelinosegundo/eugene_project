@@ -1,8 +1,5 @@
 package models;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,13 +72,12 @@ public class Sample extends Cluster{
 	
 	public SamplesDistance getDistance(Sample sample){
 		double distance = 0;
-		int i = 0;
+		
 		for(Gene gene : validGenes()){
 			Gene correspondingGene = sample.getGeneByMarker(gene.getMarker());
 			double distValue = (gene.getExpression()-correspondingGene.getExpression());
 			distValue *= distValue;
 			distance += distValue;
-			i++;
 		}
 		distance = (Math.round(Math.sqrt(distance)*100.0)/100.0);
 		return new SamplesDistance(this, sample, distance);

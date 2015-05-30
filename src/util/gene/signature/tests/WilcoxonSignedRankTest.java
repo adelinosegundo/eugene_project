@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package util.geneSignatureTests;
+package util.gene.signature.tests;
 
 import org.apache.commons.math3.distribution.NormalDistribution;
 import org.apache.commons.math3.exception.ConvergenceException;

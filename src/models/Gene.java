@@ -9,6 +9,7 @@ public class Gene {
 		this.setMarker(marker);
 		this.setExpression(expression);
 		this.setValid(true);
+		this.setValid(false);
 	}
 
 	public String getMarker() {

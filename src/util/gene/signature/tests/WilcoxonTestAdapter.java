@@ -1,7 +1,7 @@
 /**
  * 
  */
-package util.geneSignatureTests;
+package util.gene.signature.tests;
 
 /**
  * @author Wendell P. Barreto (wendellp.barreto@gmail.com) 
@@ -11,25 +11,15 @@ package util.geneSignatureTests;
  * @date May 30, 2015
  *
  */
-public class TTestAdapter implements IGeneSignatureTest {
-	private TTest tTestAdaptee;
-	
-	public TTestAdapter() {
-		tTestAdaptee = new TTest();
-	}
-	
+public class WilcoxonTestAdapter implements IGeneSignatureTest {
+
 	/* (non-Javadoc)
 	 * @see util.geneSignatureTests.IGeneSignatureTest#requestValue()
 	 */
 	@Override
 	public double requestValue(double sample1, double sample2) {
-		double[] sample1Array = null;
-		double[] sample2Array = null;
-		
-		sample1Array[0] = sample1;
-		sample2Array[0] = sample2;
-		
-		return tTestAdaptee.pairedTTest(sample1Array, sample2Array);
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

@@ -1,7 +1,5 @@
 package models;
 
-import util.clustering.Cluster;
-import util.clustering.SamplesDistanceComparator;
 
 public class SamplesDistance{
 	private Sample from;

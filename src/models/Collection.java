@@ -4,12 +4,7 @@
 package models;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.PriorityQueue;
 import java.util.List;
-
-import util.Fatorial;
-import util.clustering.SamplesDistanceComparator;
 
 /**
  * @author wendellpbarreto
@@ -24,7 +19,7 @@ public class Collection {
 		this.setKinds(new ArrayList<Kind>());
 	}
 	
-	public Kind addAndReturnKind(String name) { // TRASH CODE!
+ 	public Kind addAndReturnKind(String name) { // TRASH CODE!
 		boolean alreadyExists = false;
 		int kindCounter = 0;
 		Kind atualKind = null, newKind = null;
@@ -66,6 +61,28 @@ public class Collection {
 		}
 	}
 	
+	public ArrayList<Sample> getSamplesOfKind(Kind kind) {
+		ArrayList<Sample> samples = new ArrayList<Sample>();
+		
+		for (Sample sample : this.samples) {
+			if (sample.getKind() == kind) {
+				samples.add(sample);
+			}
+		}
+		
+		return samples;
+	}
+	
+	public void setGenesValidByMarker(String marker) {
+		for (Sample sample : this.samples) {
+			for (Gene gene : sample.getGenes()) {
+				if (gene.getMarker().equals(marker)) {
+					gene.setValid(true);
+				}
+			}
+		}
+	}
+	
 	public void print() {
 		System.out.println("\n\n - -- --- ---- COLLECTION ---- --- -- - \n");
 		
@@ -75,22 +92,68 @@ public class Collection {
 		}
 		System.out.println("");
 		
-		System.out.println(" * Samples <name> | <kind.name> | valid? <valid>");
+		System.out.println(" * Samples <name> | <kind.name>");
 		for (Sample sample : this.samples) {
 			System.out.println("" + sample.getName() + " | " + sample.getKind().getName());
 		}
 		System.out.println("");
 		
-		System.out.println(" * Gene <sample.name> | <marker> | <expression>");
+		System.out.println(" * Gene <sample.name> | <marker> | <expression> | valid? <valid>");
 		for (Sample sample : this.samples) {
 			for (Gene gene : sample.getGenes()) {
-				System.out.println(sample.getName() + " | " + gene.getMarker() + " | " + gene.getExpression());
+				System.out.println(sample.getName() + " | " + gene.getMarker() + " | " + gene.getExpression() + " | " + gene.isValid());
 			}
 		}
 		System.out.println("");
 		
 	}
 	
+	public int getSamplesQuantity() {
+		return this.samples.size();
+	}
+	
+	public int getExpressionsQuantity() {
+		int result = 0;
+		for (Sample sample : this.samples) {
+			result += sample.getGenes().size();
+		}
+		
+		return result;
+	}
+	
+	public int getValidGenesQuantity() {
+		int result = 0;
+		
+		if (this.samples.size() > 0) {
+			for (Gene gene : this.samples.get(0).getGenes()) {
+				result += gene.isValid() ? 1 : 0;
+			}
+		}
+		
+		return result;
+	}
+	
+	public int getInvaliGenesQuantity() {
+		int result = 0;
+		
+		if (this.samples.size() > 0){
+			for (Gene gene : this.samples.get(0).getGenes()) {
+				result += gene.isValid() ? 0 : 1;
+			}
+		}
+		
+		return result;
+	}
+
+	public String getGroupsNames() {
+		String result = "";
+		
+		for (Kind kind : this.kinds) {
+			result += kind.getName() + " ";
+		}
+		
+		return result;
+	}
 	public List<Kind> getKinds() {
 		return kinds;
 	}

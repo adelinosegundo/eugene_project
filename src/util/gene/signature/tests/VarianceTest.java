@@ -1,7 +1,7 @@
 /**
- * 
+ * http://wikiciencias.casadasciencias.org/wiki/index.php/Vari%C3%A2ncia_amostral
  */
-package util.geneSignatureTests;
+package util.gene.signature.tests;
 
 /**
  * @author Wendell P. Barreto (wendellp.barreto@gmail.com) 
@@ -11,7 +11,6 @@ package util.geneSignatureTests;
  * @date May 30, 2015
  *
  */
-public interface IGeneSignatureTest {
-	
-	public double requestValue(double sample1, double sample2);
+public class VarianceTest {
+
 }
