@@ -3,7 +3,7 @@ package tests.controllers;
 import static org.junit.Assert.*;
 import models.Collection;
 
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
 import controller.GeneController;
@@ -11,7 +11,7 @@ import controller.GeneController;
 public class GeneControllerTest {
 	Collection collection;
 	
-	@BeforeClass
+	@Before
 	public void setUpBeforeClass() {
 		this.collection = new Collection();
 	}

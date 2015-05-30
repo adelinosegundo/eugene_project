@@ -3,6 +3,7 @@ package models;
 public class Gene {
 	private	String marker;
 	private Double expression;
+	private boolean valid;
 	
 	public Gene(String marker, Double expression){
 		this.setMarker(marker);
@@ -23,5 +24,13 @@ public class Gene {
 
 	public void setExpression(Double expression) {
 		this.expression = expression;
+	}
+	
+	public boolean isValid() {
+		return valid;
+	}
+
+	public void setValid(boolean valid) {
+		this.valid = valid;
 	}
 }

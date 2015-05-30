@@ -7,25 +7,21 @@ public class Sample {
 	private String name;
 	private List<Gene> genes;
 	private Kind kind;
-	private boolean valid;
 
 	public Sample(String name, Kind kind){
 		this.setName(name);
 		this.setKind(kind);
-		this.setValid(true);
 		this.genes = new ArrayList<Gene>();
 	}
 
 	public Sample(Kind kind, ArrayList<Gene> genes, String name){
 		this.setKind(kind);
-		this.setValid(true);
 		this.setGenes(genes);
 		this.setName(name);
 	}
 
 	public Sample(Kind kind, ArrayList<Gene> genes, boolean valid, String name){
 		this.setKind(kind);
-		this.setValid(valid);
 		this.setGenes(genes);
 		this.setName(name);
 	}
@@ -44,14 +40,6 @@ public class Sample {
 
 	public void setKind(Kind kind) {
 		this.kind = kind;
-	}
-
-	public boolean isValid() {
-		return valid;
-	}
-
-	public void setValid(boolean valid) {
-		this.valid = valid;
 	}
 	
 	public void addGene(Gene gene){
@@ -75,5 +63,39 @@ public class Sample {
 	public void setName(String name) {
 		this.name = name.toLowerCase().trim();
 	}
+	
+	public SamplesDistance getDistance(Sample sample){
+		Double distance = 0.0;
+		for(Gene gene : validGenes()){
+			Gene correspondingGene = sample.getGeneByMarker(gene.getMarker());
+			double distValue = (gene.getExpression()-correspondingGene.getExpression());
+			distValue *= distValue;
+			distance += distValue;
+		}
+		return new SamplesDistance(this, sample, distance);
+	}
 
+	/**
+	 * @param gene
+	 * @return Gene by marker
+	 */
+	private Gene getGeneByMarker(String marker) {
+		for(Gene gene : genes){
+			if (gene.getMarker().equals(marker))
+				return gene;
+		}
+		return null;
+	}
+
+	/**
+	 * @return
+	 */
+	private ArrayList<Gene> validGenes() {
+		ArrayList<Gene> validGenes = new ArrayList<Gene>();
+		for(Gene gene : genes){
+			if (gene.isValid()) 
+				validGenes.add(gene);
+		}
+		return validGenes;
+	}
 }

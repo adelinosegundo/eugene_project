@@ -72,7 +72,7 @@ public class Collection {
 		
 		System.out.println(" * Samples <name> | <kind.name> | valid? <valid>");
 		for (Sample sample : this.samples) {
-			System.out.println("" + sample.getName() + " | " + sample.getKind().getName() + " | valid? " + sample.isValid());
+			System.out.println("" + sample.getName() + " | " + sample.getKind().getName());
 		}
 		System.out.println("");
 		
@@ -101,4 +101,6 @@ public class Collection {
 	public void setSamples(List<Sample> samples) {
 		this.samples = samples;
 	}
+	
+	
 }
