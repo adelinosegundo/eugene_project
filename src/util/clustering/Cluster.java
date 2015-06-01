@@ -97,7 +97,7 @@ public class Cluster implements Clusterable{
             System.out.print("  ");
 
         }
-        String name = getName() + (isLeaf() ? " (leaf)" : "") + (distance == -1 ? "  distance: " + distance : "");
+        String name = getName() + (isLeaf() ? " (leaf)" : "") + (distance > 0 ? "  distance: " + distance : "");
         System.out.println(name);
         for (Clusterable child : getChildren()) {
             child.toConsole(indent + 1);
