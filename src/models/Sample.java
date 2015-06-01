@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import util.clustering.Cluster;
+import util.clustering.ClusterPair;
+import util.clustering.Clusterable;
 
 
 public class Sample extends Cluster{
@@ -70,7 +72,9 @@ public class Sample extends Cluster{
 		this.name = name.toLowerCase().trim();
 	}
 	
-	public SamplesDistance getDistance(Sample sample){
+	@Override
+	public ClusterPair getDistance(Clusterable cluster){
+		Sample sample = (Sample) cluster;
 		double distance = 0;
 		
 		for(Gene gene : validGenes()){
@@ -80,7 +84,7 @@ public class Sample extends Cluster{
 			distance += distValue;
 		}
 		distance = (Math.round(Math.sqrt(distance)*100.0)/100.0);
-		return new SamplesDistance(this, sample, distance);
+		return new ClusterPair(this, sample, distance);
 	}
 
 	/**

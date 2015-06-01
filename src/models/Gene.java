@@ -8,7 +8,6 @@ public class Gene {
 	public Gene(String marker, Double expression){
 		this.setMarker(marker);
 		this.setExpression(expression);
-		this.setValid(true);
 		this.setValid(false);
 	}
 

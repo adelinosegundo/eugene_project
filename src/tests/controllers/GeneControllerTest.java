@@ -1,12 +1,18 @@
 package tests.controllers;
 
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import models.Collection;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import util.clustering.HierarchyBuilder;
+import util.clustering.Cluster;
+import util.clustering.Clusterable;
+import util.clustering.DendogramBuilder;
 import controller.GeneController;
 
 public class GeneControllerTest {
@@ -21,10 +27,11 @@ public class GeneControllerTest {
 	public void test() {
 		GeneController geneController =  new GeneController();
 		geneController.processSamples(this.collection, "/Users/adelinosegundo/Downloads/File1-ex-input.txt", "/Users/adelinosegundo/Downloads/File2-ex-input.txt");
-		HierarchyBuilder dendogram = new HierarchyBuilder(this.collection.getSamples());
+		List<Clusterable> clusters = new ArrayList<Clusterable>();
+		clusters.addAll(this.collection.getSamples());
+		DendogramBuilder dendogram = new DendogramBuilder(clusters);
 		dendogram.generateClusters();
-		while(!dendogram.isTreeComplete())
-			dendogram.agglomerate();
+		dendogram.generateDendogram();
 		dendogram.toConsole();
 		
 	}

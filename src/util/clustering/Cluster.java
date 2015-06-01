@@ -3,44 +3,47 @@ package util.clustering;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cluster {
+public class Cluster implements Clusterable{
 
     private String name;
 
-    private Cluster parent;
+    private Clusterable parent;
 
-    private List<Cluster> children;
+    private List<Clusterable> children;
 
 	private double distance;
 
     public double getDistance() {
         return distance;
     }
+    
+    public ClusterPair getDistance(Clusterable cluster) {
+        return new ClusterPair(this, cluster, Math.abs(distance-cluster.getDistance()));
+    }
 
     public void setDistance(double distance) {
         this.distance = distance;
     }
 
-    public List<Cluster> getChildren() {
+    public List<Clusterable> getChildren() {
         if (children == null) {
-            children = new ArrayList<Cluster>();
+            children = new ArrayList<Clusterable>();
         }
 
         return children;
     }
 
-    public void setChildren(List<Cluster> children) {
+    public void setChildren(List<Clusterable> children) {
         this.children = children;
     }
 
-    public Cluster getParent() {
+    public Clusterable getParent() {
         return parent;
     }
 
-    public void setParent(Cluster parent) {
+    public void setParent(Clusterable parent) {
         this.parent = parent;
     }
-
 
     public Cluster(String name) {
         this.name = name;
@@ -54,12 +57,12 @@ public class Cluster {
         this.name = name;
     }
 
-    public void addChild(Cluster cluster) {
-        getChildren().add(cluster);
+    public void addChild(Clusterable from) {
+        getChildren().add(from);
 
     }
 
-    public boolean contains(Cluster cluster) {
+    public boolean contains(Clusterable cluster) {
         return getChildren().contains(cluster);
     }
 
@@ -81,9 +84,9 @@ public class Cluster {
         return countLeafs(this, 0);
     }
 
-    public int countLeafs(Cluster node, int count) {
+    public int countLeafs(Clusterable node, int count) {
         if (node.isLeaf()) count++;
-        for (Cluster child : node.getChildren()) {
+        for (Clusterable child : node.getChildren()) {
             count += child.countLeafs();
         }
         return count;
@@ -96,7 +99,7 @@ public class Cluster {
         }
         String name = getName() + (isLeaf() ? " (leaf)" : "") + (distance == -1 ? "  distance: " + distance : "");
         System.out.println(name);
-        for (Cluster child : getChildren()) {
+        for (Clusterable child : getChildren()) {
             child.toConsole(indent + 1);
         }
     }
