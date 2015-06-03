@@ -12,14 +12,18 @@ package util.gene.signature.tests;
  *
  */
 public class WilcoxonTestAdapter implements IGeneSignatureTest {
-
+	private WilcoxonSignedRankTest wilcoxonTest;
+	
+	public WilcoxonTestAdapter() {
+		this.wilcoxonTest = new WilcoxonSignedRankTest();
+	}
+	
 	/* (non-Javadoc)
 	 * @see util.geneSignatureTests.IGeneSignatureTest#requestValue()
 	 */
 	@Override
-	public double requestValue(double sample1, double sample2) {
-		// TODO Auto-generated method stub
-		return 0;
+	public double requestValue(double[] sample1, double[] sample2) {
+		
+		return this.wilcoxonTest.wilcoxonSignedRankTest(sample1, sample2, false);
 	}
-
 }

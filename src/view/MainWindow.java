@@ -63,7 +63,7 @@ public class MainWindow {
 	private JRadioButton varianceTestRadioButton = null;
 	private JRadioButton tTestStudentRadioButton = null;
 	private JRadioButton wilcoxonTestRadioButton = null;
-	private JRadioButton chiSquareTestRadioButton = null;
+	private JRadioButton kolmogorovTestRadioButton = null;
 	
 	private JLabel lblSamples = null;
 	private JLabel lblSamplesQuantity = null;
@@ -221,16 +221,16 @@ public class MainWindow {
 		wilcoxonTestRadioButton.setBounds(256, 70, 205, 23);
 		panel.add(wilcoxonTestRadioButton);
 		
-		chiSquareTestRadioButton = new JRadioButton("Chi Square Test");
-		chiSquareTestRadioButton.setBounds(256, 95, 141, 23);
-		panel.add(chiSquareTestRadioButton);
+		kolmogorovTestRadioButton = new JRadioButton("Kolmogorov Smirnov Test");
+		kolmogorovTestRadioButton.setBounds(256, 95, 205, 23);
+		panel.add(kolmogorovTestRadioButton);
 		
 		// Radio Buttons Group
 		testButtonGroup = new ButtonGroup();
 		testButtonGroup.add(varianceTestRadioButton);
 		testButtonGroup.add(tTestStudentRadioButton);
 		testButtonGroup.add(wilcoxonTestRadioButton);
-		testButtonGroup.add(chiSquareTestRadioButton);
+		testButtonGroup.add(kolmogorovTestRadioButton);
 		
 		// Buttons
 		executeTestButton = new JButton("Execute Test");
@@ -359,8 +359,8 @@ public class MainWindow {
 			                while (scanner.hasNext()) {
 				                if (scanner.hasNextDouble()){
 				                	expression = scanner.nextDouble();
-				                	
-				                	Gene gene = new Gene(geneMarker, expression);
+				                	Kind kind = collection.getSamples().get(counter).getKind();
+				                	Gene gene = new Gene(geneMarker, expression, kind);
 				                	collection.getSamples().get(counter).addGene(gene);
 				                	
 				                	counter++;
@@ -394,8 +394,8 @@ public class MainWindow {
 					geneController.validateGenesByPvalue(collection, "ttest");
 				} else if (wilcoxonTestRadioButton.isSelected()) {
 					geneController.validateGenesByPvalue(collection, "wilcoxon");
-				} else if (chiSquareTestRadioButton.isSelected()) {
-					geneController.validateGenesByPvalue(collection, "chisquare");
+				} else if (kolmogorovTestRadioButton.isSelected()) {
+					geneController.validateGenesByPvalue(collection, "kolmogorov");
 
 				}
 			}

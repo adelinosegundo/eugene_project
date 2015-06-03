@@ -12,14 +12,13 @@ package util.gene.signature.tests;
  *
  */
 public class VarianceTestAdapter implements IGeneSignatureTest {
-
+	
 	/* (non-Javadoc)
 	 * @see util.geneSignatureTests.IGeneSignatureTest#requestValue()
 	 */
 	@Override
-	public double requestValue(double sample1, double sample2) {
+	public double requestValue(double sample1[], double sample2[]) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
 }

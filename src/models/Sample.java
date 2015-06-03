@@ -38,6 +38,18 @@ public class Sample extends Cluster{
 		return genes;
 	}
 
+	public List<Gene> getGenesByMarker(String marker) {
+		List<Gene> genes = new ArrayList<Gene>();
+		
+		for(Gene gene : this.genes) {
+			if (gene.getMarker().equals(marker)) {
+				genes.add(gene);
+			}
+		}
+		
+		return genes;
+	}
+
 	public void setGenes(List<Gene> genes) {
 		this.genes = genes;
 	}

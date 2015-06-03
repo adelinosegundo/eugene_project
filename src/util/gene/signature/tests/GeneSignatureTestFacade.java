@@ -21,7 +21,7 @@ public class GeneSignatureTestFacade {
 		GeneSignatureTestFactory.getInstance();
 		this.geneSignatureTest = GeneSignatureTestFactory.getRegisteredGeneSignatureTest(testType);
 	}
-	public double requestValue(double sample1, double sample2) {
+	public double requestValue(double sample1[], double sample2[]) {
 		return geneSignatureTest.requestValue(sample1, sample2);
 	}
 }

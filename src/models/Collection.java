@@ -140,10 +140,10 @@ public class Collection {
 		}
 		System.out.println("");
 		
-		System.out.println(" * Gene <sample.name> | <marker> | <expression> | valid? <valid>");
+		System.out.println(" * Gene <sample.name> | <marker> | <expression> | <kind> | valid? <valid>");
 		for (Sample sample : this.samples) {
 			for (Gene gene : sample.getGenes()) {
-				System.out.println(sample.getName() + " | " + gene.getMarker() + " | " + gene.getExpression() + " | " + gene.isValid());
+				System.out.println(sample.getName() + " | " + gene.getMarker() + " | " + gene.getExpression() + " | " + gene.getKind().getName() + " | " + gene.isValid());
 			}
 		}
 		System.out.println("");

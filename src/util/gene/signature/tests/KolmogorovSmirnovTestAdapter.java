@@ -11,15 +11,19 @@ package util.gene.signature.tests;
  * @date May 30, 2015
  *
  */
-public class ChiSquareTestAdapter implements IGeneSignatureTest {
-
+public class KolmogorovSmirnovTestAdapter implements IGeneSignatureTest {
+	private KolmogorovSmirnovTest kolmogorovSmirnovTest;
+	
+	public KolmogorovSmirnovTestAdapter() {
+		this.kolmogorovSmirnovTest = new KolmogorovSmirnovTest();
+	}
+	
 	/* (non-Javadoc)
 	 * @see util.geneSignatureTests.IGeneSignatureTest#requestValue(double, double)
 	 */
 	@Override
-	public double requestValue(double sample1, double sample2) {
-		// TODO Auto-generated method stub
-		return 0;
+	public double requestValue(double[] sample1, double[] sample2) {
+		
+		return this.kolmogorovSmirnovTest.kolmogorovSmirnovStatistic(sample1, sample2);
 	}
-
 }

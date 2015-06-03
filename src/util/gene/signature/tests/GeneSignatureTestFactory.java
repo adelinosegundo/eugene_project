@@ -24,7 +24,7 @@ public class GeneSignatureTestFactory {
 		"variance", // TestType 1
 		"wilcoxon", // TestType 2
 		"ttest",  // TestType 3
-		"chisquare",  // TestType 3
+		"kolmogorov",  // TestType 3
 	};
 	
 	private GeneSignatureTestFactory() {
@@ -32,7 +32,7 @@ public class GeneSignatureTestFactory {
 		this.register(testTypes[0], (IGeneSignatureTest) new VarianceTestAdapter());
 		this.register(testTypes[1], new WilcoxonTestAdapter());
 		this.register(testTypes[2].toString(), (IGeneSignatureTest) new TTestAdapter());
-		this.register(testTypes[3].toString(), (IGeneSignatureTest) new ChiSquareTestAdapter());
+		this.register(testTypes[3].toString(), (IGeneSignatureTest) new KolmogorovSmirnovTestAdapter());
 		
 		System.out.println("GeneSignatureTestFactory initialized!");
 		

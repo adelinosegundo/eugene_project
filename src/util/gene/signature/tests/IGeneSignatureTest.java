@@ -13,5 +13,5 @@ package util.gene.signature.tests;
  */
 public interface IGeneSignatureTest {
 	
-	public double requestValue(double sample1, double sample2);
+	public double requestValue(double[] sample1, double[] sample2);
 }
