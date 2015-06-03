@@ -6,6 +6,9 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
+import util.clustering.Clusterable;
+import util.clustering.DendogramBuilder;
+
 /**
  * @author wendellpbarreto
  *
@@ -13,10 +16,49 @@ import java.util.List;
 public class Collection {
 	private List<Sample> samples;
 	private List<Kind> kinds;
-	
+	private DendogramBuilder dendogramBuilder;
+
 	public Collection(){
 		this.setSamples(new ArrayList<Sample>());
 		this.setKinds(new ArrayList<Kind>());
+	}
+	
+	public boolean buildDendogram(){
+		if (samples.size() > 0) {
+			List<Clusterable> clusters = new ArrayList<Clusterable>();
+			clusters.addAll(this.getSamples());
+			dendogramBuilder = new DendogramBuilder(clusters);
+			dendogramBuilder.generateClusters();
+			dendogramBuilder.generateDendogram();
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean validateDendogram(){
+		if (dendogramBuilder != null)
+			return SampleClusteringValidator.ValidateDendogram(this.getDendogramBuilder().getRootCluster(), this.getKinds());
+		else
+			return false;
+	}
+	
+	public boolean leaveOneOutValidation(){
+		boolean valid = true;
+		List<Clusterable> clusters = new ArrayList<Clusterable>();
+		clusters.addAll(this.getSamples());
+		for(Clusterable cluster : clusters){
+			List<Clusterable> leaveOneOutClusters = new ArrayList<Clusterable>();
+			leaveOneOutClusters.addAll(clusters);
+			leaveOneOutClusters.remove(cluster);
+			dendogramBuilder = new DendogramBuilder(leaveOneOutClusters);
+			dendogramBuilder.generateClusters();
+			dendogramBuilder.generateDendogram();
+			if(!SampleClusteringValidator.ValidateDendogram(dendogramBuilder.getRootCluster(), this.getKinds()))
+				valid = false;
+			
+		}
+		return valid;
 	}
 	
  	public Kind addAndReturnKind(String name) { // TRASH CODE!
@@ -168,6 +210,14 @@ public class Collection {
 
 	public void setSamples(List<Sample> samples) {
 		this.samples = samples;
+	}
+	
+	public DendogramBuilder getDendogramBuilder() {
+		return dendogramBuilder;
+	}
+
+	public void setDendogramBuilder(DendogramBuilder dendogramBuilder) {
+		this.dendogramBuilder = dendogramBuilder;
 	}
 	
 }

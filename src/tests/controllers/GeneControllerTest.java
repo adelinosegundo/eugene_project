@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import models.Collection;
+import models.SampleClusteringValidator;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -27,13 +28,10 @@ public class GeneControllerTest {
 	public void test() {
 		GeneController geneController =  new GeneController();
 		geneController.processSamples(this.collection, "/Users/adelinosegundo/Downloads/File1-ex-input.txt", "/Users/adelinosegundo/Downloads/File2-ex-input.txt");
-		List<Clusterable> clusters = new ArrayList<Clusterable>();
-		clusters.addAll(this.collection.getSamples());
-		DendogramBuilder dendogram = new DendogramBuilder(clusters);
-		dendogram.generateClusters();
-		dendogram.generateDendogram();
-		dendogram.toConsole();
-		
+		if(collection.buildDendogram())
+			collection.getDendogramBuilder().toConsole();
+		collection.validateDendogram();
+//		collection.leaveOneOutValidation();
 	}
 
 }
