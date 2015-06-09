@@ -91,14 +91,5 @@ public class GeneController {
 	}
 	
 	public void saveToFile(Collection collection, String filePath){
-		PrintWriter writer;
-		try {
-			writer = new PrintWriter(filePath+"AnalisysResult", "UTF-8");
-			writer.println(collection.toFileString());
-			writer.close();
-		} catch (FileNotFoundException | UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 }

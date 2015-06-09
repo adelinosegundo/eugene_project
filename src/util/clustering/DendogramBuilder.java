@@ -193,6 +193,53 @@ public class DendogramBuilder {
 		while(!this.isTreeComplete())
 			this.agglomerate();
 	}
+
+	public Double[][] getDistanceMatrix(){
+		if (distances.size()==0)
+			this.generateClustersDistances();
+		Double[][] distanceMatrix = new Double[clusters.size()][clusters.size()];
+		int i = 0, j = 0;
+		for(Clusterable cluster_A : clusters){
+			j=0;
+			for(Clusterable cluster_B : clusters){
+				if(cluster_A == cluster_B)
+					distanceMatrix[i][j] = 0.0;
+				else
+					distanceMatrix[i][j] = this.findByClusters(cluster_A, cluster_B).getDistance();
+				j++;
+			}
+			i++;
+		}
+		return distanceMatrix;
+	}
+	
+	public String getDistanceMatrixString() {
+		Double[][] distanceMatrix = this.getDistanceMatrix();
+		String resultString = "";
+		int i = -1, j = 0;
+		for(Clusterable cluster_A : clusters){
+			if (i == -1){
+				resultString += "    ";
+				for(Clusterable cluster_B : clusters){
+					resultString+="       "+cluster_B.getName();
+				}
+				resultString += "\n";
+				i++;
+			}
+			resultString += cluster_A.getName();
+			
+			for(Clusterable cluster_B : clusters){
+				resultString+="    "+distanceMatrix[i][j];
+				j++;
+			}
+			i++;
+			j=0;
+			resultString += "\n";
+			
+		}
+		
+		return resultString;
+	}
 	
 
 }
