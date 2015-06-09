@@ -11,25 +11,25 @@ import util.clustering.Clusterable;
 public class Sample extends Cluster{
 	private String name;
 	private List<Gene> genes;
-	private Kind kind;
+	private Group group;
 
-	public Sample(String name, Kind kind){
+	public Sample(String name, Group group){
 		super(name);
 		this.setName(name);
-		this.setKind(kind);
+		this.setGroup(group);
 		this.genes = new ArrayList<Gene>();
 	}
 
-	public Sample(Kind kind, ArrayList<Gene> genes, String name){
+	public Sample(Group group, ArrayList<Gene> genes, String name){
 		super(name);
-		this.setKind(kind);
+		this.setGroup(group);
 		this.setGenes(genes);
 		this.setName(name);
 	}
 
-	public Sample(Kind kind, ArrayList<Gene> genes, boolean valid, String name){
+	public Sample(Group group, ArrayList<Gene> genes, boolean valid, String name){
 		super(name);
-		this.setKind(kind);
+		this.setGroup(group);
 		this.setGenes(genes);
 		this.setName(name);
 	}
@@ -54,12 +54,12 @@ public class Sample extends Cluster{
 		this.genes = genes;
 	}
 
-	public Kind getKind() {
-		return kind;
+	public Group getGroup() {
+		return group;
 	}
 
-	public void setKind(Kind kind) {
-		this.kind = kind;
+	public void setGroup(Group group) {
+		this.group = group;
 	}
 	
 	public void addGene(Gene gene){

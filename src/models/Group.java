@@ -1,10 +1,10 @@
 package models;
 
-public class Kind {
+public class Group {
 	private String name;
 	private int ID;
 	
-	public Kind(String name, int ID) {
+	public Group(String name, int ID) {
 		this.setName(name);
 		this.setID(ID);
 	}

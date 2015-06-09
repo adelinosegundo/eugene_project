@@ -22,7 +22,7 @@ import javax.swing.JTextArea;
 
 import models.Collection;
 import models.Gene;
-import models.Kind;
+import models.Group;
 import models.Sample;
 
 import javax.swing.border.TitledBorder;
@@ -303,18 +303,18 @@ public class MainWindow {
 			            console.append("Reading file " + file.getName() + " ...\n");
 			            
 			            while((line = bufferedReader.readLine()) != null) {
-			                String[] sampleMarkerAndKind = line.split(" ");
+			                String[] sampleMarkerAndGroup = line.split(" ");
 			                
 			                
-			                System.out.println("'" + sampleMarkerAndKind[0] + "'");
-			                System.out.println("'" + sampleMarkerAndKind[1] + "'");
+			                System.out.println("'" + sampleMarkerAndGroup[0] + "'");
+			                System.out.println("'" + sampleMarkerAndGroup[1] + "'");
 			                
-			                String sampleName = sampleMarkerAndKind[0];
-			                String kindName = sampleMarkerAndKind[1];
+			                String sampleName = sampleMarkerAndGroup[0];
+			                String groupName = sampleMarkerAndGroup[1];
 			                
-			                Kind kind = collection.addAndReturnKind(kindName);
+			                Group group = collection.addAndReturnGroup(groupName);
 			                
-			                collection.addSample(sampleName, kind);
+			                collection.addSample(sampleName, group);
 			                
 			            }
 			            bufferedReader.close();   
@@ -359,8 +359,8 @@ public class MainWindow {
 			                while (scanner.hasNext()) {
 				                if (scanner.hasNextDouble()){
 				                	expression = scanner.nextDouble();
-				                	Kind kind = collection.getSamples().get(counter).getKind();
-				                	Gene gene = new Gene(geneMarker, expression, kind);
+				                	Group group = collection.getSamples().get(counter).getGroup();
+				                	Gene gene = new Gene(geneMarker, expression, group);
 				                	collection.getSamples().get(counter).addGene(gene);
 				                	
 				                	counter++;

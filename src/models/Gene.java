@@ -4,7 +4,7 @@ public class Gene {
 	private	String marker;
 	private Double expression;
 	private boolean valid;
-	private Kind kind;
+	private Group group;
 	
 	public Gene(String marker, Double expression){
 		this.setMarker(marker);
@@ -12,11 +12,11 @@ public class Gene {
 		this.setValid(false);
 	}
 	
-	public Gene(String marker, Double expression, Kind kind){
+	public Gene(String marker, Double expression, Group group){
 		this.setMarker(marker);
 		this.setExpression(expression);
 		this.setValid(false);
-		this.setKind(kind);
+		this.setGroup(group);
 	}
 
 	public String getMarker() {
@@ -43,11 +43,11 @@ public class Gene {
 		this.valid = valid;
 	}
 	
-	public Kind getKind() {
-		return kind;
+	public Group getGroup() {
+		return group;
 	}
 
-	public void setKind(Kind kind) {
-		this.kind = kind;
+	public void setGroup(Group group) {
+		this.group = group;
 	}
 }

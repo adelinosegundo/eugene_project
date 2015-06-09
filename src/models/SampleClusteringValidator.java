@@ -12,22 +12,22 @@ import util.clustering.Clusterable;
  * @author Adelino Segundo (adelinosegundo@gmail.com)
  */
 public class SampleClusteringValidator {
-	public static boolean ValidateDendogram(Clusterable cluster, List<Kind> kinds){
+	public static boolean ValidateDendogram(Clusterable cluster, List<Group> groups){
 		boolean valid = true;
 		List<Clusterable> queue = new LinkedList<Clusterable>();
 		for(Clusterable childCluster: cluster.getChildren()){
 			if (childCluster.isLeaf())
 				queue.add(childCluster);
 			queue.addAll(childCluster.getChildren());
-			int kind_id = -1;
+			int group_id = -1;
 			while(!queue.isEmpty()){
 				Clusterable subCluster = queue.remove(0);
 				if (subCluster.isLeaf()){
 					Sample sample = (Sample) subCluster;
-					System.out.println(sample.getName() + sample.getKind().getName() + sample.getKind().getID());
-					if(kind_id == -1)
-						kind_id = sample.getKind().getID();
-					else if (sample.getKind().getID() != kind_id)
+					System.out.println(sample.getName() + sample.getGroup().getName() + sample.getGroup().getID());
+					if(group_id == -1)
+						group_id = sample.getGroup().getID();
+					else if (sample.getGroup().getID() != group_id)
 						valid = false;
 				}else{
 					queue.addAll(subCluster.getChildren());

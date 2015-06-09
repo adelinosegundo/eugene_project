@@ -15,12 +15,12 @@ import util.clustering.DendogramBuilder;
  */
 public class Collection {
 	private List<Sample> samples;
-	private List<Kind> kinds;
+	private List<Group> groups;
 	private DendogramBuilder dendogramBuilder;
 
 	public Collection(){
 		this.setSamples(new ArrayList<Sample>());
-		this.setKinds(new ArrayList<Kind>());
+		this.setGroups(new ArrayList<Group>());
 	}
 	
 	public boolean buildDendogram(){
@@ -38,7 +38,7 @@ public class Collection {
 	
 	public boolean validateDendogram(){
 		if (dendogramBuilder != null)
-			return SampleClusteringValidator.ValidateDendogram(this.getDendogramBuilder().getRootCluster(), this.getKinds());
+			return SampleClusteringValidator.ValidateDendogram(this.getDendogramBuilder().getRootCluster(), this.getGroups());
 		else
 			return false;
 	}
@@ -54,41 +54,41 @@ public class Collection {
 			dendogramBuilder = new DendogramBuilder(leaveOneOutClusters);
 			dendogramBuilder.generateClusters();
 			dendogramBuilder.generateDendogram();
-			if(!SampleClusteringValidator.ValidateDendogram(dendogramBuilder.getRootCluster(), this.getKinds()))
+			if(!SampleClusteringValidator.ValidateDendogram(dendogramBuilder.getRootCluster(), this.getGroups()))
 				valid = false;
 			
 		}
 		return valid;
 	}
 	
- 	public Kind addAndReturnKind(String name) { // TRASH CODE!
+ 	public Group addAndReturnGroup(String name) { // TRASH CODE!
 		boolean alreadyExists = false;
-		int kindCounter = 0;
-		Kind atualKind = null, newKind = null;
+		int groupCounter = 0;
+		Group atualGroup = null, newGroup = null;
 		
-		for (Kind kind : this.kinds) {
-			alreadyExists = kind.getName().equals(name) ? true : false;
+		for (Group group : this.groups) {
+			alreadyExists = group.getName().equals(name) ? true : false;
 			
 			if (alreadyExists) {
-				atualKind = kind;
+				atualGroup = group;
 				
 				break;
 			} else {
-				kindCounter++;
+				groupCounter++;
 			}
 		}
 		
 		if (alreadyExists) {
-			return atualKind;
+			return atualGroup;
 		} else {
-			newKind = new Kind(name, kindCounter);
-			this.kinds.add(newKind);
+			newGroup = new Group(name, groupCounter);
+			this.groups.add(newGroup);
 			
-			return newKind;
+			return newGroup;
 		}
 	}
 	
-	public void addSample(String name, Kind kind) { // TRASH CODE!
+	public void addSample(String name, Group group) { // TRASH CODE!
 		boolean alreadyExists = false;
 		int sampleCounter = 0;
 		
@@ -98,16 +98,16 @@ public class Collection {
 		}
 		
 		if (!alreadyExists) {
-			Sample newSample = new Sample(name, kind);
+			Sample newSample = new Sample(name, group);
 			this.samples.add(newSample);
 		}
 	}
 	
-	public ArrayList<Sample> getSamplesOfKind(Kind kind) {
+	public ArrayList<Sample> getSamplesOfGroup(Group group) {
 		ArrayList<Sample> samples = new ArrayList<Sample>();
 		
 		for (Sample sample : this.samples) {
-			if (sample.getKind() == kind) {
+			if (sample.getGroup() == group) {
 				samples.add(sample);
 			}
 		}
@@ -128,22 +128,22 @@ public class Collection {
 	public void print() {
 		System.out.println("\n\n - -- --- ---- COLLECTION ---- --- -- - \n");
 		
-		System.out.println(" * Kinds [<id>] : '<name>'");
-		for (Kind kind : this.kinds) {
-			System.out.println("[" + kind.getID() + "] : '" + kind.getName() + "'");
+		System.out.println(" * Groups [<id>] : '<name>'");
+		for (Group group : this.groups) {
+			System.out.println("[" + group.getID() + "] : '" + group.getName() + "'");
 		}
 		System.out.println("");
 		
-		System.out.println(" * Samples <name> | <kind.name>");
+		System.out.println(" * Samples <name> | <group.name>");
 		for (Sample sample : this.samples) {
-			System.out.println("" + sample.getName() + " | " + sample.getKind().getName());
+			System.out.println("" + sample.getName() + " | " + sample.getGroup().getName());
 		}
 		System.out.println("");
 		
-		System.out.println(" * Gene <sample.name> | <marker> | <expression> | <kind> | valid? <valid>");
+		System.out.println(" * Gene <sample.name> | <marker> | <expression> | <group> | valid? <valid>");
 		for (Sample sample : this.samples) {
 			for (Gene gene : sample.getGenes()) {
-				System.out.println(sample.getName() + " | " + gene.getMarker() + " | " + gene.getExpression() + " | " + gene.getKind().getName() + " | " + gene.isValid());
+				System.out.println(sample.getName() + " | " + gene.getMarker() + " | " + gene.getExpression() + " | " + gene.getGroup().getName() + " | " + gene.isValid());
 			}
 		}
 		System.out.println("");
@@ -190,18 +190,18 @@ public class Collection {
 	public String getGroupsNames() {
 		String result = "";
 		
-		for (Kind kind : this.kinds) {
-			result += kind.getName() + " ";
+		for (Group group : this.groups) {
+			result += group.getName() + " ";
 		}
 		
 		return result;
 	}
-	public List<Kind> getKinds() {
-		return kinds;
+	public List<Group> getGroups() {
+		return groups;
 	}
 
-	public void setKinds(List<Kind> kinds) {
-		this.kinds = kinds;
+	public void setGroups(List<Group> groups) {
+		this.groups = groups;
 	}
 
 	public List<Sample> getSamples() {
