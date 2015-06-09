@@ -28,7 +28,7 @@ public class Collection {
 			List<Clusterable> clusters = new ArrayList<Clusterable>();
 			clusters.addAll(this.getSamples());
 			dendogramBuilder = new DendogramBuilder(clusters);
-			dendogramBuilder.generateClusters();
+			dendogramBuilder.generateClustersDistances();
 			dendogramBuilder.generateDendogram();
 			return true;
 		} else {
