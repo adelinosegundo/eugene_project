@@ -11,6 +11,9 @@ package controller;
  */
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -106,7 +109,15 @@ public class CollectionController {
 
 	public void writeDistanceMatrix(Collection collection, File file) {
 		// TODO Auto-generated method stub
-		
+		PrintWriter writer;
+		try {
+			writer = new PrintWriter(file, "UTF-8");
+			writer.println(collection.distanceMatrixToFileString());
+			writer.close();
+		} catch (FileNotFoundException | UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void drawDendogram(Collection collection, File file) {
@@ -116,6 +127,14 @@ public class CollectionController {
 
 	public void writePvalues(Collection collection, File file) {
 		// TODO Auto-generated method stub
-		
+		PrintWriter writer;
+		try {
+			writer = new PrintWriter(file, "UTF-8");
+			writer.println(collection.pValuesToFileString());
+			writer.close();
+		} catch (FileNotFoundException | UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

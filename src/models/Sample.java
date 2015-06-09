@@ -127,4 +127,12 @@ public class Sample extends Cluster{
 		// TODO Auto-generated method stub
 		
 	}
+
+	public String getPValuesString() {
+		String resultString = "";
+	    for(Gene gene : genes){
+	    	resultString += gene.getMarker()+"  "+gene.getPValue()+"\n";
+	    }
+		return resultString;
+	}
 }

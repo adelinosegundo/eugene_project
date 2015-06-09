@@ -220,17 +220,13 @@ public class Collection {
 		this.dendogramBuilder = dendogramBuilder;
 	}
 
-	public String toFileString() {
-		// TODO Auto-generated method stub
-		String result_string = "";
-		//percorrer por gene
-		return result_string;
+	public String distanceMatrixToFileString() {
+		return dendogramBuilder.getDistanceMatrixString();
 	}
-	
-	public String dendogramToFileString(){
-		String result_string = "";
-		
-		return result_string;
+
+	public String pValuesToFileString() {
+		// TODO Auto-generated method stub
+		return samples.get(0).getPValuesString();
 	}
 	
 }
