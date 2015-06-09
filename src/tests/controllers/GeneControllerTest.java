@@ -2,6 +2,7 @@ package tests.controllers;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class GeneControllerTest {
 		GeneController geneController =  new GeneController();
 		geneController.processSamples(this.collection, "/Users/wendellpbarreto/Downloads/File1-ex-input.txt", "/Users/wendellpbarreto/Downloads/File2-ex-input.txt");
 		if(collection.buildDendogram())
-			collection.getDendogramBuilder().toGraphviz();
+			collection.getDendogramBuilder().toGraphviz(new File("/Users/wendellpbarreto/Downloads/out.png"));
 //		collection.validateDendogram();
 //		collection.leaveOneOutValidation();
 	}

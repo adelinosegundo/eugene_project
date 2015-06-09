@@ -1,5 +1,15 @@
 package controller;
 
+/**
+ * @author Wendell P. Barreto (wendellp.barreto@gmail.com) 
+ * @author Adelino Neto Segundo (adelinosegundo@gmail.com) 
+ * @role Full Stack Developer
+ * @formation Informatics Technician | IFRN
+ * @formation Bachelor of Software Engineering (on going) | UFRN
+ * @date May 30, 2015
+ *
+ */
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -86,13 +96,11 @@ public class CollectionController {
 	}
 	
 	public boolean performLeaveOneOutValidation(Collection collection) {
-		// TODO Auto-generated method stub
-		return false;
+		return collection.leaveOneOutValidation();
 	}
 
 	public boolean performGroupValidation(Collection collection) {
-		// TODO Auto-generated method stub
-		return false;
+		return collection.validateDendogram();
 	}
 
 
@@ -102,16 +110,12 @@ public class CollectionController {
 	}
 
 	public void drawDendogram(Collection collection, File file) {
-		// TODO Auto-generated method stub
-		
+		if(collection.buildDendogram()) collection.getDendogramBuilder().toGraphviz(file);
+			
 	}
 
 	public void writePvalues(Collection collection, File file) {
 		// TODO Auto-generated method stub
 		
 	}
-
-
-
-
 }

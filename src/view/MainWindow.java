@@ -1,5 +1,14 @@
 package view;
 
+/**
+ * @author Wendell P. Barreto (wendellp.barreto@gmail.com) 
+ * @role Full Stack Developer
+ * @formation Informatics Technician | IFRN
+ * @formation Bachelor of Software Engineering (on going) | UFRN
+ * @date May 30, 2015
+ *
+ */
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 

@@ -112,7 +112,7 @@ public class DendogramBuilder {
 		root.toConsole(0);
 	}
 	
-	public void toGraphviz(){
+	public void toGraphviz(File file){
 		GraphViz gv = new GraphViz();
 	    gv.addln(gv.start_graph());
 	    gv.addln("overlap = false; splines = false;");
@@ -121,8 +121,7 @@ public class DendogramBuilder {
 		Cluster.toGraphviz(gv, 0, nivel);
 		gv.addln(gv.end_graph());
 	    String type = "png";
-	    File out = new File("/tmp/out." + type);
-	    gv.writeGraphToFile( gv.getGraph( gv.getDotSource(), type ), out );
+	    gv.writeGraphToFile( gv.getGraph( gv.getDotSource(), type ), file );
 	}
 
 	/**
