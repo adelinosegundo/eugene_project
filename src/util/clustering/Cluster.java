@@ -106,34 +106,62 @@ public class Cluster implements Clusterable{
         }
     }
     
-    public void toGraphviz(GraphViz gv, int indent) {
-    	gv.addln(gv.start_subgraph("root" + indent));
+    public static void toGraphviz(GraphViz gv, int level, ArrayList<Clusterable> levelClusters) {
+		ArrayList<Clusterable> newNivel = new ArrayList<Clusterable>();
+    
+
+    	gv.addln(gv.start_subgraph("root" + level));
     	gv.addln("rank = same;");
-    	for (int i = 0; i < indent + 1; i++) {
-           gv.addln((isLeaf() ? " (Leaf)" : "NA") + indent);
-        }
+    	
+    	for (int i = 0; i < levelClusters.size(); i++) {
+    		Clusterable clstr = levelClusters.get(i);
+    		String clusterName = "\"" + clstr.getName() + "lvl" + level + "." + i + "\"" ;
+    		String clusterConnector1Name = "\"" + "conn" + "lvl" + level + "." + i + "-c1\"";
+			String clusterConnector2Name = "\"" + "conn" + "lvl" + level + "." + i + "-c2\"";
+			
+    		if (clstr.isLeaf()) {
+    			gv.addln(clusterName + " [shape = box, regular = 1];");
+    		} else {
+    			gv.addln(clusterConnector1Name + " [shape = box];");
+    			gv.addln(clusterName + " [shape = point];");
+    			gv.addln(clusterConnector2Name + " [shape = box];");
+    			
+    			gv.addln(clusterConnector1Name + " -> " + clusterName + " [dir = none]");
+    			gv.addln(clusterName + " -> " + clusterConnector2Name + " [dir = none]");
+    			
+    			for (int j = 0; j < clstr.getChildren().size(); j++) {
+    				Clusterable clusterChildren = clstr.getChildren().get(j);
+    				
+    				newNivel.add(clusterChildren);
+    			}
+    		}
+    	}
+    	
     	gv.addln(gv.end_subgraph());
     	
-        String name = getName() + (isLeaf() ? " (leaf)" : "") + (distance > 0 ? "  distance: " + distance : "");
-        System.out.println(name);
-        for (Clusterable child : getChildren()) {
-            child.toGraphviz(gv, indent + 1);
-        }
-    }
-    
-//    gv.addln(gv.start_subgraph("root"));
-//    gv.addln("rank = same;");
-//    gv.addln("Root [shape = point];");
-//    gv.addln(gv.end_subgraph());	
-//    gv.addln(gv.start_subgraph("root2"));
-//    gv.addln("rank = same;");
-//    gv.addln("Root1 [shape = point];");
-//    gv.addln("Root2 [shape = point];");
-//    gv.addln("Root3 [shape = point];");
-//    gv.addln("Root1 -> Root2 [dir = none];");
-//    gv.addln("Root2 -> Root3 [dir = none];");
-//    gv.addln(gv.end_subgraph());
-//    gv.addln("Root -> Root2 [dir = none]");
- 
+    	int counter = 0;
+    	for (int i = 0; i < levelClusters.size(); i++) {
+    		Clusterable clstr = levelClusters.get(i);
+    		String clusterConnector1Name = "\"" + "conn" + "lvl" + level + "." + i + "-c1\"";
+			String clusterConnector2Name = "\"" + "conn" + "lvl" + level + "." + i + "-c2\"";
+			
+    		for (int j = 0; j < clstr.getChildren().size(); j++) {
+				Clusterable clusterChildren = clstr.getChildren().get(j);
+				String clusterChildrenName = "\"" + clusterChildren.getName() + "lvl" + (level + 1) + "." + counter + "\"" ;
 
+				if (j == 0) gv.addln(clusterConnector1Name + " -> " + clusterChildrenName + " [dir = none]");
+				if (j == 1) gv.addln(clusterConnector2Name + " -> " + clusterChildrenName + " [dir = none]");
+				
+				counter++;
+			}
+
+    	}
+		
+		
+//	    System.out.println(gv.getDotSource());
+
+    	if (!newNivel.isEmpty()) {
+    		Cluster.toGraphviz(gv, level + 1, newNivel);
+        }
+	}
 }
