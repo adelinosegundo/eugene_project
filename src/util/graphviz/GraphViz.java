@@ -1,4 +1,5 @@
 package util.graphviz;
+
 // GraphViz.java - a simple API to call dot from Java programs
 
 /*$Id$*/
@@ -71,7 +72,7 @@ public class GraphViz
    /**
     * The dir. where temporary files will be created.
     */
-   private static String TEMP_DIR = "/tmp";	// Linux
+   private static String TEMP_DIR = "/Users/wendellpbarreto/Downloads";	// Linux
  //  private static String TEMP_DIR = "c:/temp";	// Windows
 
    /**
@@ -255,6 +256,22 @@ public class GraphViz
       return "}";
    }
 
+   /**
+    * Returns a string that is used to start a subgraph.
+    * @return A string to open a graph.
+    */
+   public String start_subgraph(String name) {
+      return "subgraph " + name + " {";
+   }
+
+   /**
+    * Returns a string that is used to end a subgraph.
+    * @return A string to close a graph.
+    */
+   public String end_subgraph() {
+      return "}";
+   }
+   
    /**
     * Read a DOT graph from a text file.
     * 

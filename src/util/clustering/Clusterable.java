@@ -5,6 +5,8 @@ package util.clustering;
 
 import java.util.List;
 
+import util.graphviz.GraphViz;
+
 /**
  * @author Adelino Segundo (adelinosegundo@gmail.com)
  */
@@ -27,4 +29,5 @@ public interface Clusterable {
 	    int countLeafs();
 	    int countLeafs(Clusterable node, int count);
 	    void toConsole(int indent);
+		void toGraphviz(GraphViz gv, int i);
 }

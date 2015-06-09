@@ -3,6 +3,8 @@ package util.clustering;
 import java.util.ArrayList;
 import java.util.List;
 
+import util.graphviz.GraphViz;
+
 public class Cluster implements Clusterable{
 
     private String name;
@@ -94,7 +96,7 @@ public class Cluster implements Clusterable{
     
     public void toConsole(int indent) {
         for (int i = 0; i < indent; i++) {
-            System.out.print("  ");
+            System.out.print("_");
 
         }
         String name = getName() + (isLeaf() ? " (leaf)" : "") + (distance > 0 ? "  distance: " + distance : "");
@@ -103,5 +105,35 @@ public class Cluster implements Clusterable{
             child.toConsole(indent + 1);
         }
     }
+    
+    public void toGraphviz(GraphViz gv, int indent) {
+    	gv.addln(gv.start_subgraph("root" + indent));
+    	gv.addln("rank = same;");
+    	for (int i = 0; i < indent + 1; i++) {
+           gv.addln((isLeaf() ? " (Leaf)" : "NA") + indent);
+        }
+    	gv.addln(gv.end_subgraph());
+    	
+        String name = getName() + (isLeaf() ? " (leaf)" : "") + (distance > 0 ? "  distance: " + distance : "");
+        System.out.println(name);
+        for (Clusterable child : getChildren()) {
+            child.toGraphviz(gv, indent + 1);
+        }
+    }
+    
+//    gv.addln(gv.start_subgraph("root"));
+//    gv.addln("rank = same;");
+//    gv.addln("Root [shape = point];");
+//    gv.addln(gv.end_subgraph());	
+//    gv.addln(gv.start_subgraph("root2"));
+//    gv.addln("rank = same;");
+//    gv.addln("Root1 [shape = point];");
+//    gv.addln("Root2 [shape = point];");
+//    gv.addln("Root3 [shape = point];");
+//    gv.addln("Root1 -> Root2 [dir = none];");
+//    gv.addln("Root2 -> Root3 [dir = none];");
+//    gv.addln(gv.end_subgraph());
+//    gv.addln("Root -> Root2 [dir = none]");
+ 
 
 }

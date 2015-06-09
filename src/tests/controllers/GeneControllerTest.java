@@ -27,7 +27,7 @@ public class GeneControllerTest {
 	@Test
 	public void test() {
 		GeneController geneController =  new GeneController();
-		geneController.processSamples(this.collection, "/Users/adelinosegundo/Downloads/File1-ex-input.txt", "/Users/adelinosegundo/Downloads/File2-ex-input.txt");
+		geneController.processSamples(this.collection, "/Users/wendellpbarreto/Downloads/File1-ex-input.txt", "/Users/wendellpbarreto/Downloads/File2-ex-input.txt");
 		if(collection.buildDendogram())
 			collection.getDendogramBuilder().toConsole();
 		collection.validateDendogram();

@@ -1,10 +1,12 @@
 package util.clustering;
 
+import java.io.File;
 import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 
 import util.Fatorial;
+import util.graphviz.GraphViz;
 
 public class DendogramBuilder {
 
@@ -98,6 +100,26 @@ public class DendogramBuilder {
 	 */
 	public void toConsole() {
 		clusters.get(0).toConsole(0);
+	}
+	
+	public void toGraphviz(){
+		GraphViz gv = new GraphViz();
+	    gv.addln(gv.start_graph());
+		clusters.get(0).toGraphviz(gv, 1);
+		gv.addln(gv.end_graph());
+	    System.out.println(gv.getDotSource());
+	      
+	      String type = "gif";
+//	      String type = "dot";
+//	      String type = "fig";    // open with xfig
+//	      String type = "pdf";
+//	      String type = "ps";
+//	      String type = "svg";    // open with inkscape
+//	      String type = "png";
+//	      String type = "plain";
+	      File out = new File("/tmp/out." + type);   // Linux
+//	      File out = new File("c:/eclipse.ws/graphviz-java-api/out." + type);    // Windows
+	      gv.writeGraphToFile( gv.getGraph( gv.getDotSource(), type ), out );
 	}
 
 	/**
