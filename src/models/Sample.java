@@ -122,4 +122,9 @@ public class Sample extends Cluster{
 		}
 		return validGenes;
 	}
+
+	public void toFileString(boolean print_gene_names) {
+		// TODO Auto-generated method stub
+		
+	}
 }

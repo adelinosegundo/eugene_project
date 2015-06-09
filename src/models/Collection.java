@@ -52,7 +52,7 @@ public class Collection {
 			leaveOneOutClusters.addAll(clusters);
 			leaveOneOutClusters.remove(cluster);
 			dendogramBuilder = new DendogramBuilder(leaveOneOutClusters);
-			dendogramBuilder.generateClusters();
+			dendogramBuilder.generateClustersDistances();
 			dendogramBuilder.generateDendogram();
 			if(!SampleClusteringValidator.ValidateDendogram(dendogramBuilder.getRootCluster(), this.getGroups()))
 				valid = false;
@@ -218,6 +218,19 @@ public class Collection {
 
 	public void setDendogramBuilder(DendogramBuilder dendogramBuilder) {
 		this.dendogramBuilder = dendogramBuilder;
+	}
+
+	public String toFileString() {
+		// TODO Auto-generated method stub
+		String result_string = "";
+		//percorrer por gene
+		return result_string;
+	}
+	
+	public String dendogramToFileString(){
+		String result_string = "";
+		
+		return result_string;
 	}
 	
 }

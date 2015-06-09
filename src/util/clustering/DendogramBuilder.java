@@ -1,6 +1,7 @@
 package util.clustering;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -13,14 +14,15 @@ public class DendogramBuilder {
     private PriorityQueue<ClusterPair> distances;
     Comparator<ClusterPair> comparator;
     private List<Clusterable> clusters;
+    private Clusterable root;
 
     public DendogramBuilder(List<Clusterable> clusters) {
         this.clusters = clusters;
         comparator = new ClusterDistanceComparator();
-        this.distances = new PriorityQueue<ClusterPair>(getSamplesDistancesAmount(), comparator);
     }
     
-    public void generateClusters(){
+    public void generateClustersDistances(){
+    	this.distances = new PriorityQueue<ClusterPair>(getSamplesDistancesAmount(), comparator);
 		for(int i = 0; i<clusters.size();i++){
 			for(int j=i+1;j<clusters.size();j++){
 				if (i!=j)
@@ -30,43 +32,51 @@ public class DendogramBuilder {
 	}
 
     public void agglomerate() {
-        ClusterPair minDistLink = distances.remove();
-        if (minDistLink != null) {
-            clusters.remove(minDistLink.getFrom());
-            clusters.remove(minDistLink.getTo());
+    	if (distances.size() > 0){
+    		List<Clusterable> tree_clusters = new ArrayList<Clusterable>();
+    		tree_clusters.addAll(clusters);
+    		while(!(tree_clusters.size() == 1)){
+    			ClusterPair minDistLink = distances.remove();
+    	        if (minDistLink != null) {
+    	            tree_clusters.remove(minDistLink.getFrom());
+    	            tree_clusters.remove(minDistLink.getTo());
 
-            Clusterable oldClusterL = minDistLink.getTo();
-            Clusterable oldClusterR = minDistLink.getFrom();
-            Clusterable newCluster = minDistLink.agglomerate(null);
+    	            Clusterable oldClusterL = minDistLink.getTo();
+    	            Clusterable oldClusterR = minDistLink.getFrom();
+    	            Clusterable newCluster = minDistLink.agglomerate(null);
 
-            for (Clusterable iClust : clusters) {
-            	ClusterPair link1 = findByClusters(iClust, oldClusterL);
-            	ClusterPair link2 = findByClusters(iClust, oldClusterR);
-            	
-                double[] distanceValues = new double[2];
+    	            for (Clusterable iClust : tree_clusters) {
+    	            	ClusterPair link1 = findByClusters(iClust, oldClusterL);
+    	            	ClusterPair link2 = findByClusters(iClust, oldClusterR);
+    	            	
+    	                double[] distanceValues = new double[2];
 
-                if (link1 != null) {
-                    distanceValues[0] = link1.getDistance();;
-                    distances.remove(link1);
-                }
-                if (link2 != null) {
-                	distanceValues[1] = link2.getDistance();;
-                    distances.remove(link2);
-                }
-                
-                double newDistance = 0;
-                
-                if (distanceValues[0] < distanceValues[1])
-                	newDistance = distanceValues[0];
-                else
-                	newDistance = distanceValues[1];
-                
-                ClusterPair newSampleDistance = new ClusterPair(iClust, newCluster, newDistance);
-                distances.add(newSampleDistance);
+    	                if (link1 != null) {
+    	                    distanceValues[0] = link1.getDistance();;
+    	                    distances.remove(link1);
+    	                }
+    	                if (link2 != null) {
+    	                	distanceValues[1] = link2.getDistance();;
+    	                    distances.remove(link2);
+    	                }
+    	                
+    	                double newDistance = 0;
+    	                
+    	                if (distanceValues[0] < distanceValues[1])
+    	                	newDistance = distanceValues[0];
+    	                else
+    	                	newDistance = distanceValues[1];
+    	                
+    	                ClusterPair newSampleDistance = new ClusterPair(iClust, newCluster, newDistance);
+    	                distances.add(newSampleDistance);
 
-            }
-            clusters.add(newCluster);
-        }
+    	            }
+    	            tree_clusters.add(newCluster);
+    	        }
+    		}
+    		this.root = tree_clusters.get(0);
+    		this.generateClustersDistances();
+    	}
     }
 
     private ClusterPair findByClusters(Clusterable c1, Clusterable c2) {
@@ -79,14 +89,14 @@ public class DendogramBuilder {
     }
 
     public boolean isTreeComplete() {
-        return clusters.size() == 1;
+        return root != null;
     }
 
     public Clusterable getRootCluster() {
         if (!isTreeComplete()) {
             throw new RuntimeException("No root available");
         }
-        return clusters.get(0);
+        return root;
     }
     
     public int getSamplesDistancesAmount(){
@@ -99,7 +109,7 @@ public class DendogramBuilder {
 	 * 
 	 */
 	public void toConsole() {
-		clusters.get(0).toConsole(0);
+		root.toConsole(0);
 	}
 	
 	public void toGraphviz(){

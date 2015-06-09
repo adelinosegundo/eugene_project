@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -159,5 +161,17 @@ public class GeneController {
         } catch(IOException ex) {
             System.out.println("Error reading file '" + samplesFileName + "'");
         }  
+	}
+	
+	public void saveToFile(Collection collection, String filePath){
+		PrintWriter writer;
+		try {
+			writer = new PrintWriter(filePath+"AnalisysResult", "UTF-8");
+			writer.println(collection.toFileString());
+			writer.close();
+		} catch (FileNotFoundException | UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
