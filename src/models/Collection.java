@@ -115,12 +115,20 @@ public class Collection {
 		return samples;
 	}
 	
-	public void setGenesValidByMarker(String marker) {
+	public void setGenesInvalidByMarker(String marker) {
 		for (Sample sample : this.samples) {
 			for (Gene gene : sample.getGenes()) {
 				if (gene.getMarker().equals(marker)) {
-					gene.setValid(true);
+					gene.setValid(false);
 				}
+			}
+		}
+	}
+	
+	public void setGenesValidTrue() {
+		for (Sample sample : this.samples) {
+			for (Gene gene : sample.getGenes()) {
+				gene.setValid(true);
 			}
 		}
 	}

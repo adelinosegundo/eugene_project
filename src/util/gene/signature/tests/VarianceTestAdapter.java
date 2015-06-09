@@ -12,13 +12,18 @@ package util.gene.signature.tests;
  *
  */
 public class VarianceTestAdapter implements IGeneSignatureTest {
+	private VarianceTest varianceTest;
+	
+	public VarianceTestAdapter() {
+		this.varianceTest = new VarianceTest();
+	}
 	
 	/* (non-Javadoc)
 	 * @see util.geneSignatureTests.IGeneSignatureTest#requestValue()
 	 */
 	@Override
-	public double requestValue(double sample1[], double sample2[]) {
-		// TODO Auto-generated method stub
-		return 0;
+	public double requestValue(double[] sample1, double[] sample2) {
+		
+		return this.varianceTest.varianceTestBetweenSamples(sample1, sample2);
 	}
 }

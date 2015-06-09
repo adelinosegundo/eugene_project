@@ -467,13 +467,13 @@ public class MainWindow {
 		executeTestButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (varianceTestRadioButton.isSelected()){
-					collectionController.performGenesValidation(collection, "variance");
+					collectionController.performGenesValidationByVariation(collection, 50);
 				} else if (tTestStudentRadioButton.isSelected()) {
-					collectionController.performGenesValidation(collection, "ttest");
+					collectionController.performGenesValidationByPValue(collection, "ttest", 0, 0.05);
 				} else if (wilcoxonTestRadioButton.isSelected()) {
-					collectionController.performGenesValidation(collection, "wilcoxon");
+					collectionController.performGenesValidationByPValue(collection, "wilcoxon", 0, 0.05);
 				} else if (kolmogorovTestRadioButton.isSelected()) {
-					collectionController.performGenesValidation(collection, "kolmogorov");
+					collectionController.performGenesValidationByPValue(collection, "kolmogorov", 0, 0.05);
 				}
 			}
 		});

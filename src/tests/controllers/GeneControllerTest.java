@@ -31,8 +31,8 @@ public class GeneControllerTest {
 		geneController.processSamples(this.collection, "/Users/wendellpbarreto/Downloads/File1-ex-input.txt", "/Users/wendellpbarreto/Downloads/File2-ex-input.txt");
 		if(collection.buildDendogram())
 			collection.getDendogramBuilder().toGraphviz(new File("/Users/wendellpbarreto/Downloads/out.png"));
-//		collection.validateDendogram();
-//		collection.leaveOneOutValidation();
+		collection.validateDendogram();
+		collection.leaveOneOutValidation();
 	}
 
 }

@@ -12,22 +12,102 @@ package controller;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 import util.gene.signature.tests.GeneSignatureTestFacade;
 import models.Collection;
 import models.Gene;
+import models.GeneSignature;
+import models.GeneSignatureComparator;
 import models.Group;
 import models.Sample;
 
 public class CollectionController {
-	private static double MIN_PVALUE = 0;
-	private static double MAX_PVALUE = 0.05;
 	
-	public void performGenesValidation(Collection collection, String testType) {
-		GeneSignatureTestFacade geneSignatureTest = new GeneSignatureTestFacade(testType);
+	public void performGenesValidationByVariation(Collection collection, int quantity) {
+		ArrayList<GeneSignature> genesSignatures = prepareGenesSignatures(collection);
+		
+		collection.setGenesValidTrue();
+		
+		for (GeneSignature geneSignature : genesSignatures) {
+			Gene currentGene = geneSignature.getBaseGene();
+			ArrayList<Double> sample1 = geneSignature.getSample1();
+			ArrayList<Double> sample2 = geneSignature.getSample2();
+			double[] sample1double = new double[sample1.size()];
+			double[] sample2double = new double[sample2.size()];
+			
+			System.out.print(currentGene.getMarker() + " | " + currentGene.getGroup().getName());
+			for (int k = 0; k < sample1.size(); k++) {
+				sample1double[k] = sample1.get(k);
+				
+				System.out.print(" [" + sample1.get(k) + "]");
+			}
+			System.out.println("");	
+
+			System.out.print(currentGene.getMarker()  + " | " + currentGene.getGroup().getName());
+			for (int m = 0; m < sample2.size(); m++) {
+				sample2double[m] = sample2.get(m);
+				
+				System.out.print(" [" + sample2.get(m) + "]");
+			}
+
+			GeneSignatureTestFacade geneSignatureTest = new GeneSignatureTestFacade("variance");
+			double value = geneSignatureTest.requestValue(sample1double, sample2double);
+			
+			geneSignature.setVariance(value);
+		}
+		
+		Collections.reverseOrder(new GeneSignatureComparator());
+		Collections.sort(genesSignatures, new GeneSignatureComparator());
+		
+		for (int i = 0; i < quantity; i++) {
+			genesSignatures.get(i).getBaseGene().setValid(true);
+		}
+	}
+
+	public void performGenesValidationByPValue(Collection collection, String testType, double min, double max) {
+		ArrayList<GeneSignature> genesSignatures = prepareGenesSignatures(collection);
+		
+		collection.setGenesValidTrue();
+		
+		for (GeneSignature geneSignature : genesSignatures) {
+			Gene currentGene = geneSignature.getBaseGene();
+			ArrayList<Double> sample1 = geneSignature.getSample1();
+			ArrayList<Double> sample2 = geneSignature.getSample2();
+			double[] sample1double = null;
+			double[] sample2double = null;
+			
+			System.out.print(currentGene.getMarker() + " | " + currentGene.getGroup().getName());
+			for (int k = 0; k < sample1.size(); k++) {
+				sample1double[k] = sample1.get(k);
+				
+				System.out.print(" [" + sample1.get(k) + "]");
+			}
+			System.out.println("");	
+
+			System.out.print(currentGene.getMarker()  + " | " + currentGene.getGroup().getName());
+			for (int m = 0; m < sample2.size(); m++) {
+				sample2double[m] = sample2.get(m);
+				
+				System.out.print(" [" + sample2.get(m) + "]");
+			}
+
+			GeneSignatureTestFacade geneSignatureTest = new GeneSignatureTestFacade(testType);
+			double pValue = geneSignatureTest.requestValue(sample1double, sample2double);
+			
+			 if (pValue < min || pValue > max) {
+				 collection.setGenesInvalidByMarker(geneSignature.getBaseGene().getMarker());
+			 }
+		}
+	}
+	
+
+
+	public ArrayList<GeneSignature> prepareGenesSignatures(Collection collection) {
 		Sample baseSample = collection.getSamples().get(0);
 		ArrayList<Group> groups = (ArrayList<Group>) collection.getGroups();
+		ArrayList<GeneSignature> geneSignatures = new ArrayList<GeneSignature>();
 
 		for (int i = 0; i < baseSample.getGenes().size(); i++) {
 			HashMap<Group, ArrayList<Double>> expressionsByGroups = new HashMap<Group, ArrayList<Double>>();
@@ -47,52 +127,25 @@ public class CollectionController {
 			}
 			
 			for (int j = 0; j < groups.size(); j++) {
-				double[] firstSample = null;
-				double[] secondSample = null;
 				Group firstGroup = groups.get(j);
 				ArrayList<Double> firstGroupExpressions = expressionsByGroups.get(firstGroup);
-				firstSample = new double[firstGroupExpressions.size()];
-					
-				System.out.print(baseSample.getGenes().get(i).getMarker() + " | " + firstGroup.getName());
-				for (int k = 0; k < firstGroupExpressions.size(); k++) {
-					firstSample[k] = firstGroupExpressions.get(k);
-					
-					System.out.print(" [" + firstGroupExpressions.get(k) + "]");
-				}
-				System.out.println("");	
-			
+
 				for (int l = j + 1; l < groups.size(); l++) {
 					Group secondGroup = groups.get(l);
 					ArrayList<Double> secondGroupExpressions = expressionsByGroups.get(secondGroup);
-					secondSample = new double[secondGroupExpressions.size()];
 					
-					System.out.print(baseSample.getGenes().get(i).getMarker() + " | " + secondGroup.getName());
-					for (int m = 0; m < secondGroupExpressions.size(); m++) {
-						secondSample[m] = secondGroupExpressions.get(m);
-						
-						System.out.print(" [" + secondGroupExpressions.get(m) + "]");
+					if (firstGroupExpressions != null && secondGroupExpressions != null) {
+						geneSignatures.add(new GeneSignature(baseSample.getGenes().get(i), firstGroupExpressions, secondGroupExpressions));
 					}
 				}
-				
-				if (firstSample != null && secondSample != null) {
-					pValue = geneSignatureTest.requestValue(firstSample, secondSample);
-					System.out.println(" p-value: " + pValue);
-					
-					if (pValue < MIN_PVALUE || pValue > MAX_PVALUE) {
-						isValid = false;
-						
-						break;
-					}
-				}
-			}
-			
-			if (isValid) {
-				collection.setGenesValidByMarker(baseSample.getGenes().get(i).getMarker());
-
-				System.out.println(" ** VALID ");
 			} 
 		}
 		
+		return geneSignatures;
+	}
+	
+	public void performGenesValidationByVariation(Collection collection, String string) {
+		// TODO Auto-generated method stub
 	}
 	
 	public boolean performLeaveOneOutValidation(Collection collection) {
@@ -118,4 +171,8 @@ public class CollectionController {
 		// TODO Auto-generated method stub
 		
 	}
+
+
+
+
 }
