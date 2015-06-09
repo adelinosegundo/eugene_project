@@ -108,23 +108,22 @@ public class Cluster implements Clusterable{
     
     public static void toGraphviz(GraphViz gv, int level, ArrayList<Clusterable> levelClusters) {
 		ArrayList<Clusterable> newNivel = new ArrayList<Clusterable>();
-    
-
+   
     	gv.addln(gv.start_subgraph("root" + level));
     	gv.addln("rank = same;");
     	
     	for (int i = 0; i < levelClusters.size(); i++) {
     		Clusterable clstr = levelClusters.get(i);
-    		String clusterName = "\"" + clstr.getName() + "lvl" + level + "." + i + "\"" ;
+    		String clusterName = "\"" + clstr.getName() + "lvl" + level + "." + i + "\"";
     		String clusterConnector1Name = "\"" + "conn" + "lvl" + level + "." + i + "-c1\"";
 			String clusterConnector2Name = "\"" + "conn" + "lvl" + level + "." + i + "-c2\"";
 			
     		if (clstr.isLeaf()) {
     			gv.addln(clusterName + " [shape = box, regular = 1];");
     		} else {
-    			gv.addln(clusterConnector1Name + " [shape = box];");
+    			gv.addln(clusterConnector1Name + " [shape = point];");
     			gv.addln(clusterName + " [shape = point];");
-    			gv.addln(clusterConnector2Name + " [shape = box];");
+    			gv.addln(clusterConnector2Name + " [shape = point];");
     			
     			gv.addln(clusterConnector1Name + " -> " + clusterName + " [dir = none]");
     			gv.addln(clusterName + " -> " + clusterConnector2Name + " [dir = none]");
@@ -154,14 +153,12 @@ public class Cluster implements Clusterable{
 				
 				counter++;
 			}
-
     	}
-		
-		
-//	    System.out.println(gv.getDotSource());
 
     	if (!newNivel.isEmpty()) {
     		Cluster.toGraphviz(gv, level + 1, newNivel);
         }
+    	
+    	System.out.println(gv.getDotSource());
 	}
 }
