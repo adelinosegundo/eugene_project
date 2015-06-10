@@ -69,7 +69,6 @@ public class CollectionController {
 		}
 	}
 
-	@SuppressWarnings("null")
 	public void performGenesValidationByPValue(Collection collection, String testType, double min, double max) {
 		ArrayList<GeneSignature> genesSignatures = prepareGenesSignatures(collection);
 		
@@ -79,8 +78,8 @@ public class CollectionController {
 			Gene currentGene = geneSignature.getBaseGene();
 			ArrayList<Double> sample1 = geneSignature.getSample1();
 			ArrayList<Double> sample2 = geneSignature.getSample2();
-			double[] sample1double = null;
-			double[] sample2double = null;
+			double[] sample1double = new double[sample1.size()];
+			double[] sample2double = new double[sample2.size()];
 			
 			System.out.print(currentGene.getMarker() + " | " + currentGene.getGroup().getName());
 			for (int k = 0; k < sample1.size(); k++) {
@@ -107,8 +106,6 @@ public class CollectionController {
 		}
 	}
 	
-
-
 	public ArrayList<GeneSignature> prepareGenesSignatures(Collection collection) {
 		Sample baseSample = collection.getSamples().get(0);
 		ArrayList<Group> groups = (ArrayList<Group>) collection.getGroups();
@@ -149,9 +146,6 @@ public class CollectionController {
 		return geneSignatures;
 	}
 	
-	public void performGenesValidationByVariation(Collection collection, String string) {
-		// TODO Auto-generated method stub
-	}
 	
 	public boolean performLeaveOneOutValidation(Collection collection) {
 		return collection.leaveOneOutValidation();
@@ -163,14 +157,12 @@ public class CollectionController {
 
 
 	public void writeDistanceMatrix(Collection collection, File file) {
-		// TODO Auto-generated method stub
 		PrintWriter writer;
 		try {
 			writer = new PrintWriter(file, "UTF-8");
 			writer.println(collection.distanceMatrixToFileString());
 			writer.close();
 		} catch (FileNotFoundException | UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -181,19 +173,13 @@ public class CollectionController {
 	}
 
 	public void writePvalues(Collection collection, File file) {
-		// TODO Auto-generated method stub
 		PrintWriter writer;
 		try {
 			writer = new PrintWriter(file, "UTF-8");
 			writer.println(collection.pValuesToFileString());
 			writer.close();
 		} catch (FileNotFoundException | UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
-
-
-
 }
