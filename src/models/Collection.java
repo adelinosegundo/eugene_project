@@ -237,6 +237,8 @@ public class Collection {
 	}
 
 	public String distanceMatrixToFileString() {
+		if (dendogramBuilder == null)
+			this.buildDendogram();
 		return dendogramBuilder.getDistanceMatrixString();
 	}
 
