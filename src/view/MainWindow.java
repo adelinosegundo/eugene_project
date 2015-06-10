@@ -353,6 +353,11 @@ public class MainWindow {
 				btnImportSamples.setEnabled(false);
 				btnImportGroups.setEnabled(true);
 				executeTestButton.setEnabled(false);
+				btnGroupValidationButton.setEnabled(false);
+				btnLeaveOneOutValidation.setEnabled(false);
+				btnDownloadDistanceMatrix.setEnabled(false);
+				btnDownloadPValues.setEnabled(false);
+				btnDownloadDendogram.setEnabled(false);
 				
 				statusLabel.setIcon(new ImageIcon(onImage));
 				
