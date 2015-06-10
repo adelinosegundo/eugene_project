@@ -132,6 +132,14 @@ public class Collection {
 			}
 		}
 	}
+
+	public void setGenesValidFalse() {
+		for (Sample sample : this.samples) {
+			for (Gene gene : sample.getGenes()) {
+				gene.setValid(false);
+			}
+		}
+	}
 	
 	public void print() {
 		System.out.println("\n\n - -- --- ---- COLLECTION ---- --- -- - \n");

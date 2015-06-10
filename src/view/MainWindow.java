@@ -451,7 +451,6 @@ public class MainWindow {
 			            executeTestButton.setEnabled(true);
 			            btnGroupValidationButton.setEnabled(true);
 			            btnDownloadDistanceMatrix.setEnabled(true);
-			            btnDownloadPValues.setEnabled(true);
 			            btnDownloadDendogram.setEnabled(true);
 			        } catch(FileNotFoundException ex) {
 			            console.append("Unable to open file '" + file.getName() + "'");                
@@ -470,11 +469,16 @@ public class MainWindow {
 					collectionController.performGenesValidationByVariation(collection, 50);
 				} else if (tTestStudentRadioButton.isSelected()) {
 					collectionController.performGenesValidationByPValue(collection, "ttest", 0, 0.05);
+			        btnDownloadPValues.setEnabled(true);
 				} else if (wilcoxonTestRadioButton.isSelected()) {
 					collectionController.performGenesValidationByPValue(collection, "wilcoxon", 0, 0.05);
+			        btnDownloadPValues.setEnabled(true);
 				} else if (kolmogorovTestRadioButton.isSelected()) {
 					collectionController.performGenesValidationByPValue(collection, "kolmogorov", 0, 0.05);
+			        btnDownloadPValues.setEnabled(true);
 				}
+
+				updateStatus();
 			}
 		});
 

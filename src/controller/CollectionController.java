@@ -31,7 +31,7 @@ public class CollectionController {
 	public void performGenesValidationByVariation(Collection collection, int quantity) {
 		ArrayList<GeneSignature> genesSignatures = prepareGenesSignatures(collection);
 		
-		collection.setGenesValidTrue();
+		collection.setGenesValidFalse();
 		
 		for (GeneSignature geneSignature : genesSignatures) {
 			Gene currentGene = geneSignature.getBaseGene();
@@ -69,6 +69,7 @@ public class CollectionController {
 		}
 	}
 
+	@SuppressWarnings("null")
 	public void performGenesValidationByPValue(Collection collection, String testType, double min, double max) {
 		ArrayList<GeneSignature> genesSignatures = prepareGenesSignatures(collection);
 		
@@ -98,6 +99,7 @@ public class CollectionController {
 
 			GeneSignatureTestFacade geneSignatureTest = new GeneSignatureTestFacade(testType);
 			double pValue = geneSignatureTest.requestValue(sample1double, sample2double);
+			geneSignature.getBaseGene().setPValue(pValue);
 			
 			 if (pValue < min || pValue > max) {
 				 collection.setGenesInvalidByMarker(geneSignature.getBaseGene().getMarker());
