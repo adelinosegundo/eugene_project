@@ -64,6 +64,7 @@ public class CollectionController {
 		Collections.reverseOrder(new GeneSignatureComparator());
 		Collections.sort(genesSignatures, new GeneSignatureComparator());
 		
+		if (quantity > genesSignatures.size()) quantity = genesSignatures.size(); 
 		for (int i = 0; i < quantity; i++) {
 			genesSignatures.get(i).getBaseGene().setValid(true);
 		}
@@ -80,29 +81,35 @@ public class CollectionController {
 			ArrayList<Double> sample2 = geneSignature.getSample2();
 			double[] sample1double = new double[sample1.size()];
 			double[] sample2double = new double[sample2.size()];
+			GeneSignatureTestFacade geneSignatureTest = new GeneSignatureTestFacade(testType);
 			
-			System.out.print(currentGene.getMarker() + " | " + currentGene.getGroup().getName());
+			System.out.print("(" + currentGene.getMarker() + " | " + currentGene.getGroup().getName());
 			for (int k = 0; k < sample1.size(); k++) {
 				sample1double[k] = sample1.get(k);
 				
 				System.out.print(" [" + sample1.get(k) + "]");
 			}
-			System.out.println("");	
-
+			System.out.print(") * (");
+			
 			System.out.print(currentGene.getMarker()  + " | " + currentGene.getGroup().getName());
 			for (int m = 0; m < sample2.size(); m++) {
 				sample2double[m] = sample2.get(m);
 				
 				System.out.print(" [" + sample2.get(m) + "]");
 			}
-
-			GeneSignatureTestFacade geneSignatureTest = new GeneSignatureTestFacade(testType);
-			double pValue = geneSignatureTest.requestValue(sample1double, sample2double);
-			geneSignature.getBaseGene().setPValue(pValue);
 			
-			 if (pValue < min || pValue > max) {
-				 collection.setGenesInvalidByMarker(geneSignature.getBaseGene().getMarker());
-			 }
+			if (sample1double.length > 1 && sample2double.length > 1) {
+				double pValue = geneSignatureTest.requestValue(sample1double, sample2double);
+				System.out.print(") pValue = " + pValue);
+			
+				geneSignature.getBaseGene().setPValue(pValue);
+			
+				if (pValue < min || pValue > max) {
+					collection.setGenesInvalidByMarker(geneSignature.getBaseGene().getMarker());
+				}
+			} else {
+				System.out.println(") CAN'T CALCULATE PVALUE, ARRAY TOO SMALL!");
+			}
 		}
 	}
 	

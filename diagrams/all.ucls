@@ -3,378 +3,630 @@
   associations="true" dependencies="false" nesting-relationships="true">  
   <class id="1" language="java" name="controller.GeneController" project="gene_analytics" 
     file="/gene_analytics/src/controller/GeneController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="143" y="175"/>    
+    <position height="-1" width="-1" x="142" y="73"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="2" language="java" name="util.Heapable" project="gene_analytics" 
-    file="/gene_analytics/src/util/Heapable.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="984" y="952"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <class id="3" language="java" name="models.Sample" project="gene_analytics" 
+  <class id="2" language="java" name="models.Sample" project="gene_analytics" 
     file="/gene_analytics/src/models/Sample.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1290" y="532"/>    
+    <position height="-1" width="-1" x="1350" y="243"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="view.MainWindow" project="gene_analytics" 
-    file="/gene_analytics/src/view/MainWindow.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="133" y="864"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="5" language="java" name="util.Heap" project="gene_analytics" file="/gene_analytics/src/util/Heap.java" 
+  <class id="3" language="java" name="models.Gene" project="gene_analytics" file="/gene_analytics/src/models/Gene.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1276" y="1053"/>    
+    <position height="-1" width="-1" x="907" y="213"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="models.Gene" project="gene_analytics" file="/gene_analytics/src/models/Gene.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="683" y="371"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="7" language="java" name="models.SamplesDistance" project="gene_analytics" 
-    file="/gene_analytics/src/models/SamplesDistance.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1204" y="796"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <interface id="8" language="java" name="util.BinaryNode" project="gene_analytics" 
-    file="/gene_analytics/src/util/BinaryNode.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1453" y="891"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <package id="9" language="java" name="util.gene.signature.tests" project="gene_analytics" 
+  <package id="4" language="java" name="util.gene.signature.tests" project="gene_analytics" 
     file="/gene_analytics/src/util/gene/signature/tests" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2229" y="55"/>    
+    <position height="-1" width="-1" x="2249" y="-43"/>    
     <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
   </package>  
-  <class id="10" language="java" name="util.gene.signature.tests.VarianceTest" project="gene_analytics" 
-    file="/gene_analytics/src/util/gene/signature/tests/VarianceTest.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2460" y="518"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="11" language="java" name="util.gene.signature.tests.ChiSquareTestAdapter" project="gene_analytics" 
-    file="/gene_analytics/src/util/gene/signature/tests/ChiSquareTestAdapter.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2092" y="358"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="12" language="java" name="util.gene.signature.tests.GeneSignatureTestFacade" project="gene_analytics" 
+  <class id="5" language="java" name="util.gene.signature.tests.GeneSignatureTestFacade" project="gene_analytics" 
     file="/gene_analytics/src/util/gene/signature/tests/GeneSignatureTestFacade.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2628" y="57"/>    
+    <position height="-1" width="-1" x="2950" y="7"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="models.Collection" project="gene_analytics" 
+  <class id="6" language="java" name="models.Collection" project="gene_analytics" 
     file="/gene_analytics/src/models/Collection.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="917" y="567"/>    
+    <position height="-1" width="-1" x="1323" y="735"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="14" language="java" name="util.gene.signature.tests.IGeneSignatureTest" project="gene_analytics" 
+  <interface id="7" language="java" name="util.gene.signature.tests.IGeneSignatureTest" project="gene_analytics" 
     file="/gene_analytics/src/util/gene/signature/tests/IGeneSignatureTest.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2220" y="185"/>    
+    <position height="-1" width="-1" x="2236" y="45"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="15" language="java" name="models.Kind" project="gene_analytics" file="/gene_analytics/src/models/Kind.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="790" y="924"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="16" language="java" name="util.gene.signature.tests.ChiSquareTest" project="gene_analytics" 
-    file="/gene_analytics/src/util/gene/signature/tests/ChiSquareTest.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2202" y="611"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="17" language="java" name="util.gene.signature.tests.TTestAdapter" project="gene_analytics" 
+  <class id="8" language="java" name="util.gene.signature.tests.TTestAdapter" project="gene_analytics" 
     file="/gene_analytics/src/util/gene/signature/tests/TTestAdapter.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1806" y="357"/>    
+    <position height="-1" width="-1" x="1909" y="289"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <package id="18" language="java" name="tests.models" project="gene_analytics" file="/gene_analytics/src/tests/models" 
+  <package id="9" language="java" name="tests.models" project="gene_analytics" file="/gene_analytics/src/tests/models" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="436" y="231"/>    
+    <position height="-1" width="-1" x="586" y="338"/>    
     <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
   </package>  
-  <class id="19" language="java" name="util.gene.signature.tests.WilcoxonSignedRankTest" project="gene_analytics" 
-    file="/gene_analytics/src/util/gene/signature/tests/WilcoxonSignedRankTest.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2710" y="596"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="20" language="java" name="tests.models.GeneTest" project="gene_analytics" 
+  <class id="10" language="java" name="tests.models.GeneTest" project="gene_analytics" 
     file="/gene_analytics/src/tests/models/GeneTest.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="431" y="367"/>    
+    <position height="-1" width="-1" x="583" y="443"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="21" language="java" name="util.gene.signature.tests.TTest" project="gene_analytics" 
+  <class id="11" language="java" name="util.gene.signature.tests.TTest" project="gene_analytics" 
     file="/gene_analytics/src/util/gene/signature/tests/TTest.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1787" y="789"/>    
+    <position height="-1" width="-1" x="1770" y="708"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="22" language="java" name="tests.controllers.GeneControllerTest" project="gene_analytics" 
+  <class id="12" language="java" name="tests.controllers.GeneControllerTest" project="gene_analytics" 
     file="/gene_analytics/src/tests/controllers/GeneControllerTest.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="439" y="515"/>    
+    <position height="-1" width="-1" x="576" y="719"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="23" language="java" name="util.gene.signature.tests.GeneSignatureTestFactory" project="gene_analytics" 
+  <class id="13" language="java" name="util.gene.signature.tests.GeneSignatureTestFactory" project="gene_analytics" 
     file="/gene_analytics/src/util/gene/signature/tests/GeneSignatureTestFactory.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2910" y="207"/>    
+    <position height="-1" width="-1" x="2998" y="167"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <package id="24" language="java" name="view" project="gene_analytics" file="/gene_analytics/src/view" binary="false" 
+  <package id="14" language="java" name="view" project="gene_analytics" file="/gene_analytics/src/view" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="111" y="435"/>    
+    <position height="-1" width="-1" x="207" y="321"/>    
     <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
   </package>  
-  <class id="25" language="java" name="util.gene.signature.tests.VarianceTestAdapter" project="gene_analytics" 
+  <class id="15" language="java" name="util.gene.signature.tests.VarianceTestAdapter" project="gene_analytics" 
     file="/gene_analytics/src/util/gene/signature/tests/VarianceTestAdapter.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2390" y="357"/>    
+    <position height="-1" width="-1" x="2180" y="287"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="26" language="java" name="util.gene.signature.tests.WilcoxonTestAdapter" project="gene_analytics" 
+  <class id="16" language="java" name="util.gene.signature.tests.WilcoxonTestAdapter" project="gene_analytics" 
     file="/gene_analytics/src/util/gene/signature/tests/WilcoxonTestAdapter.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2699" y="354"/>    
+    <position height="-1" width="-1" x="2699" y="302"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <package id="27" language="java" name="util" project="gene_analytics" file="/gene_analytics/src/util" binary="false" 
+  <package id="17" language="java" name="util" project="gene_analytics" file="/gene_analytics/src/util" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1457" y="772"/>    
+    <position height="-1" width="-1" x="187" y="1270"/>    
     <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
   </package>  
-  <package id="28" language="java" name="models" project="gene_analytics" file="/gene_analytics/src/models" 
+  <package id="18" language="java" name="models" project="gene_analytics" file="/gene_analytics/src/models" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1064" y="239"/>    
+    <position height="-1" width="-1" x="1084" y="-34"/>    
     <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
   </package>  
-  <package id="29" language="java" name="tests.controllers" project="gene_analytics" 
+  <package id="19" language="java" name="tests.controllers" project="gene_analytics" 
     file="/gene_analytics/src/tests/controllers" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="134" y="66"/>    
+    <position height="-1" width="-1" x="578" y="598"/>    
     <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
   </package>  
-  <realization id="30">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="2"/>  
-  </realization>  
-  <association id="31">    
-    <end type="SOURCE" refId="23" navigable="false">      
-      <attribute id="32" name="instance"/>      
-      <multiplicity id="33" minimum="0" maximum="1"/>    
+  <class id="20" language="java" name="models.GeneSignatureComparator" project="gene_analytics" 
+    file="/gene_analytics/src/models/GeneSignatureComparator.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="894" y="823"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="models.GeneSignature" project="gene_analytics" 
+    file="/gene_analytics/src/models/GeneSignature.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="909" y="563"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="models.Group" project="gene_analytics" 
+    file="/gene_analytics/src/models/Group.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1109" y="130"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="models.SampleClusteringValidator" project="gene_analytics" 
+    file="/gene_analytics/src/models/SampleClusteringValidator.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="869" y="928"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="util.Fatorial" project="gene_analytics" 
+    file="/gene_analytics/src/util/Fatorial.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="182" y="1353"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="util.clustering.Cluster" project="gene_analytics" 
+    file="/gene_analytics/src/util/clustering/Cluster.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1342" y="1320"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="util.clustering.ClusterPair" project="gene_analytics" 
+    file="/gene_analytics/src/util/clustering/ClusterPair.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1065" y="1224"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="27" language="java" name="util.clustering.Clusterable" project="gene_analytics" 
+    file="/gene_analytics/src/util/clustering/Clusterable.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="996" y="1644"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="28" language="java" name="util.clustering.ClusterDistanceComparator" project="gene_analytics" 
+    file="/gene_analytics/src/util/clustering/ClusterDistanceComparator.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="675" y="1586"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="util.clustering.DendogramBuilder" project="gene_analytics" 
+    file="/gene_analytics/src/util/clustering/DendogramBuilder.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="697" y="1266"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="util.gene.signature.tests.VarianceTest" project="gene_analytics" 
+    file="/gene_analytics/src/util/gene/signature/tests/VarianceTest.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2164" y="455"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="31" language="java" name="util.gene.signature.tests.KolmogorovSmirnovTest" project="gene_analytics" 
+    file="/gene_analytics/src/util/gene/signature/tests/KolmogorovSmirnovTest.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2539" y="705"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="32" language="java" name="util.gene.signature.tests.KolmogorovSmirnovTestAdapter" project="gene_analytics" 
+    file="/gene_analytics/src/util/gene/signature/tests/KolmogorovSmirnovTestAdapter.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2438" y="292"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="33" language="java" name="util.gene.signature.tests.WilcoxonSignedRankTest" project="gene_analytics" 
+    file="/gene_analytics/src/util/gene/signature/tests/WilcoxonSignedRankTest.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2932" y="516"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="34" language="java" name="controller" project="gene_analytics" file="/gene_analytics/src/controller" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="287" y="-49"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="35" language="java" name="util.graphviz" project="gene_analytics" 
+    file="/gene_analytics/src/util/graphviz" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1759" y="1085"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="36" language="java" name="util.clustering" project="gene_analytics" 
+    file="/gene_analytics/src/util/clustering" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1040" y="1049"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="37" language="java" name="view.MainWindow" project="gene_analytics" 
+    file="/gene_analytics/src/view/MainWindow.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="200" y="800"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="38" language="java" name="controller.CollectionController" project="gene_analytics" 
+    file="/gene_analytics/src/controller/CollectionController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="520" y="126"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="39" language="java" name="util.graphviz.GraphViz" project="gene_analytics" 
+    file="/gene_analytics/src/util/graphviz/GraphViz.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1758" y="1338"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="40">    
+    <end type="SOURCE" refId="32" navigable="false">      
+      <attribute id="41" name="kolmogorovSmirnovTest">        
+        <position height="0" width="0" x="-220" y="-474"/>      
+      </attribute>      
+      <multiplicity id="42" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-220" y="-474"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="23" navigable="true"/>    
+    <end type="TARGET" refId="31" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="34">    
-    <end type="SOURCE" refId="22" navigable="false">      
-      <attribute id="35" name="collection"/>      
-      <multiplicity id="36" minimum="0" maximum="1"/>    
+  <association id="43">    
+    <end type="SOURCE" refId="37" navigable="false">      
+      <attribute id="44" name="collection"/>      
+      <multiplicity id="45" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
+    <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="37">    
-    <end type="SOURCE" refId="25"/>    
-    <end type="TARGET" refId="14"/>  
-  </realization>  
-  <association id="38">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="39" name="geneSignatureTest"/>      
-      <multiplicity id="40" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="41">    
-    <end type="SOURCE" refId="23" navigable="false">      
-      <attribute id="42" name="registeredGeneSignatureTests"/>      
-      <multiplicity id="43" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="44">    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="45" name="samples"/>      
-      <multiplicity id="46" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
+  <generalization id="46">    
+    <bendpoint x="1518" y="494"/>    
+    <bendpoint x="1510" y="798"/>    
+    <bendpoint x="1486" y="1012"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="25"/>  
+  </generalization>  
   <association id="47">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="48" name="collection"/>      
-      <multiplicity id="49" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="48" name="instance">        
+        <position height="0" width="0" x="88" y="-40"/>      
+      </attribute>      
+      <multiplicity id="49" minimum="0" maximum="1">        
+        <position height="0" width="0" x="88" y="-40"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="13" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="50">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="51" name="to">        
-        <position height="0" width="0" x="736" y="51"/>      
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="51" name="collection">        
+        <position height="0" width="0" x="406" y="168"/>      
       </attribute>      
       <multiplicity id="52" minimum="0" maximum="1">        
-        <position height="0" width="0" x="736" y="51"/>      
+        <position height="0" width="0" x="406" y="168"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="53">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="54" name="from">        
-        <position height="0" width="0" x="736" y="51"/>      
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="54" name="gene">        
+        <position height="0" width="0" x="224" y="-158"/>      
       </attribute>      
       <multiplicity id="55" minimum="0" maximum="1">        
-        <position height="0" width="0" x="736" y="51"/>      
+        <position height="0" width="0" x="224" y="-158"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="56">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="57" name="kind"/>      
-      <multiplicity id="58" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="57" name="varianceTest">        
+        <position height="0" width="0" x="-194" y="-190"/>      
+      </attribute>      
+      <multiplicity id="58" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-194" y="-190"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
+    <end type="TARGET" refId="30" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="59">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="60" name="tTestAdaptee"/>      
-      <multiplicity id="61" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="60" name="from">        
+        <position height="0" width="0" x="-380" y="-87"/>      
+      </attribute>      
+      <multiplicity id="61" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-380" y="-87"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="21" navigable="true"/>    
+    <end type="TARGET" refId="27" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="62">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="63" name="nodes">        
-        <position height="0" width="0" x="476" y="219"/>      
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="63" name="samples">        
+        <position height="0" width="0" x="60" y="-289"/>      
       </attribute>      
       <multiplicity id="64" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="476" y="219"/>      
+        <position height="0" width="0" x="60" y="-289"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="65">    
-    <end type="SOURCE" refId="20" navigable="false">      
-      <attribute id="66" name="gene"/>      
-      <multiplicity id="67" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="66" name="registeredGeneSignatureTests">        
+        <position height="0" width="0" x="16" y="-140"/>      
+      </attribute>      
+      <multiplicity id="67" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="16" y="-140"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
+    <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <realization id="68">    
-    <end type="SOURCE" refId="26"/>    
-    <end type="TARGET" refId="14"/>  
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="7"/>  
   </realization>  
-  <realization id="69">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="14"/>  
-  </realization>  
-  <realization id="70">    
-    <end type="SOURCE" refId="17"/>    
-    <end type="TARGET" refId="14"/>  
-  </realization>  
-  <association id="71">    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="72" name="kinds"/>      
-      <multiplicity id="73" minimum="0" maximum="2147483647"/>    
+  <association id="69">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="70" name="parent">        
+        <position height="0" width="0" x="-380" y="-87"/>      
+      </attribute>      
+      <multiplicity id="71" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-380" y="-87"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="72">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="73" name="group">        
+        <position height="0" width="0" x="-269" y="121"/>      
+      </attribute>      
+      <multiplicity id="74" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-269" y="121"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="75">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="76" name="children">        
+        <position height="0" width="0" x="-380" y="-87"/>      
+      </attribute>      
+      <multiplicity id="77" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-380" y="-87"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="78">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="79" name="geneSignatureTest">        
+        <position height="0" width="0" x="16" y="-140"/>      
+      </attribute>      
+      <multiplicity id="80" minimum="0" maximum="1">        
+        <position height="0" width="0" x="16" y="-140"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="81">    
+    <bendpoint x="801" y="1502"/>    
+    <end type="SOURCE" refId="29" navigable="false">      
+      <attribute id="82" name="root">        
+        <position height="0" width="0" x="-380" y="-87"/>      
+      </attribute>      
+      <multiplicity id="83" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-380" y="-87"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="84">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="27"/>  
+  </realization>  
+  <association id="85">    
+    <bendpoint x="769" y="1512"/>    
+    <end type="SOURCE" refId="29" navigable="false">      
+      <attribute id="86" name="clusters">        
+        <position height="0" width="0" x="-380" y="-87"/>      
+      </attribute>      
+      <multiplicity id="87" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-380" y="-87"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="88">    
+    <end type="SOURCE" refId="37" navigable="false">      
+      <attribute id="89" name="collectionController"/>      
+      <multiplicity id="90" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="38" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="91">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="92" name="groups">        
+        <position height="0" width="0" x="-269" y="121"/>      
+      </attribute>      
+      <multiplicity id="93" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-269" y="121"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="94">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="95" name="group">        
+        <position height="0" width="0" x="-269" y="121"/>      
+      </attribute>      
+      <multiplicity id="96" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-269" y="121"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="97">    
+    <end type="SOURCE" refId="21" navigable="false">      
+      <attribute id="98" name="baseGene">        
+        <position height="0" width="0" x="154" y="-460"/>      
+      </attribute>      
+      <multiplicity id="99" minimum="0" maximum="1">        
+        <position height="0" width="0" x="154" y="-460"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="100">    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="7"/>  
+  </realization>  
+  <realization id="101">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="7"/>  
+  </realization>  
+  <association id="102">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="103" name="dendogramBuilder">        
+        <position height="0" width="0" x="-291" y="-258"/>      
+      </attribute>      
+      <multiplicity id="104" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-291" y="-258"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="29" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="105">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="106" name="wilcoxonTest">        
+        <position height="0" width="0" x="-96" y="-192"/>      
+      </attribute>      
+      <multiplicity id="107" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-96" y="-192"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="33" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="108">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="7"/>  
+  </realization>  
+  <association id="109">    
+    <end type="SOURCE" refId="29" navigable="false">      
+      <attribute id="110" name="distances">        
+        <position height="0" width="0" x="-577" y="-207"/>      
+      </attribute>      
+      <multiplicity id="111" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-577" y="-207"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="112">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="113" name="tTestAdaptee">        
+        <position height="0" width="0" x="-17" y="-81"/>      
+      </attribute>      
+      <multiplicity id="114" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-17" y="-81"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="115">    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="116" name="to">        
+        <position height="0" width="0" x="-380" y="-87"/>      
+      </attribute>      
+      <multiplicity id="117" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-380" y="-87"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
