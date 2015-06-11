@@ -13,6 +13,7 @@ import util.clustering.Clusterable;
  */
 public class SampleClusteringValidator {
 	public static boolean ValidateDendogram(Clusterable cluster, List<Group> groups){
+		cluster.toConsole(0);
 		boolean valid = true;
 		List<Clusterable> queue = new LinkedList<Clusterable>();
 		for(Clusterable childCluster: cluster.getChildren()){
@@ -24,7 +25,7 @@ public class SampleClusteringValidator {
 				Clusterable subCluster = queue.remove(0);
 				if (subCluster.isLeaf()){
 					Sample sample = (Sample) subCluster;
-					System.out.println(sample.getName() + sample.getGroup().getName() + sample.getGroup().getID());
+//					System.out.println(sample.getName() + sample.getGroup().getName() + sample.getGroup().getID());
 					if(group_id == -1)
 						group_id = sample.getGroup().getID();
 					else if (sample.getGroup().getID() != group_id)
@@ -33,8 +34,8 @@ public class SampleClusteringValidator {
 					queue.addAll(subCluster.getChildren());
 				}
 			}
-			System.out.println(valid);
 		}
+		System.out.println(valid);
 		System.out.println("-----------------------");
 		return valid;
 	}

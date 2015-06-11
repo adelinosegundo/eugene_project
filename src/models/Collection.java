@@ -51,12 +51,13 @@ public class Collection {
 			List<Clusterable> leaveOneOutClusters = new ArrayList<Clusterable>();
 			leaveOneOutClusters.addAll(clusters);
 			leaveOneOutClusters.remove(cluster);
-			dendogramBuilder = new DendogramBuilder(leaveOneOutClusters);
-			dendogramBuilder.generateClustersDistances();
-			dendogramBuilder.generateDendogram();
-			if(!SampleClusteringValidator.ValidateDendogram(dendogramBuilder.getRootCluster(), this.getGroups()))
-				valid = false;
-			
+			if (leaveOneOutClusters.size() > 1){
+				dendogramBuilder = new DendogramBuilder(leaveOneOutClusters);
+				dendogramBuilder.generateClustersDistances();
+				dendogramBuilder.generateDendogram();
+				if(!SampleClusteringValidator.ValidateDendogram(dendogramBuilder.getRootCluster(), this.getGroups()))
+					valid = false;
+			}
 		}
 		return valid;
 	}

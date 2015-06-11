@@ -29,9 +29,12 @@ public class GeneControllerTest {
 	public void test() {
 		GeneController geneController =  new GeneController();
 
-		geneController.processSamples(this.collection, "/Users/adelinosegundo/Downloads/File1-ex-input.txt", "/Users/adelinosegundo/Downloads/File2-ex-input.txt");
+		geneController.processSamples(this.collection, "/Users/adelinosegundo/Downloads/samples.txt", "/Users/adelinosegundo/Downloads/groups.txt");
 		collection.buildDendogram();
-		System.out.println(collection.getDendogramBuilder().getDistanceMatrixString());
+		collection.validateDendogram();
+		collection.leaveOneOutValidation();
+		
+//		System.out.println(collection.getDendogramBuilder().getDistanceMatrixString());
 //		if(collection.buildDendogram())
 //			collection.getDendogramBuilder().toGraphviz(new File("/Users/adelinosegundo/Downloads/out.png"));
 		
