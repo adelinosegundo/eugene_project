@@ -454,9 +454,6 @@ public class MainWindow {
 			            
 			            btnImportSamples.setEnabled(false);
 			            executeTestButton.setEnabled(true);
-			            btnGroupValidationButton.setEnabled(true);
-			            btnDownloadDistanceMatrix.setEnabled(true);
-			            btnDownloadDendogram.setEnabled(true);
 			        } catch(FileNotFoundException ex) {
 			            console.append("Unable to open file '" + file.getName() + "'");                
 			        } catch(IOException ex) {
@@ -482,7 +479,13 @@ public class MainWindow {
 					collectionController.performGenesValidationByPValue(collection, "kolmogorov", 0, 0.05);
 			        btnDownloadPValues.setEnabled(true);
 				}
-
+				if (collection.buildDendogram()) {
+		            btnGroupValidationButton.setEnabled(true);
+		            btnDownloadDistanceMatrix.setEnabled(true);
+		            btnDownloadDendogram.setEnabled(true);
+				} else {
+					System.out.println("[ERROR] CAN'T BUILDDENDOGRAM!");
+				}
 				updateStatus();
 			}
 		});

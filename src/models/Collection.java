@@ -37,10 +37,12 @@ public class Collection {
 	}
 	
 	public boolean validateDendogram(){
-		if (dendogramBuilder != null)
+		if (dendogramBuilder != null) {
 			return SampleClusteringValidator.ValidateDendogram(this.getDendogramBuilder().getRootCluster(), this.getGroups());
-		else
+		} else {
+			System.out.println("NO DENDO");
 			return false;
+		}
 	}
 	
 	public boolean leaveOneOutValidation(){

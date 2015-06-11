@@ -153,7 +153,6 @@ public class CollectionController {
 		return geneSignatures;
 	}
 	
-	
 	public boolean performLeaveOneOutValidation(Collection collection) {
 		return collection.leaveOneOutValidation();
 	}
